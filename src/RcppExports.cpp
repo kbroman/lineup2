@@ -29,10 +29,22 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// fscale
+NumericMatrix fscale(const NumericMatrix& x);
+RcppExport SEXP _lineup2_fscale(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericMatrix& >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(fscale(x));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_lineup2_rmsd_betw_matrices", (DL_FUNC) &_lineup2_rmsd_betw_matrices, 2},
     {"_lineup2_mad_betw_matrices", (DL_FUNC) &_lineup2_mad_betw_matrices, 2},
+    {"_lineup2_fscale", (DL_FUNC) &_lineup2_fscale, 1},
     {NULL, NULL, 0}
 };
 

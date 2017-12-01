@@ -9,3 +9,7 @@ mad_betw_matrices <- function(x, y) {
     .Call(`_lineup2_mad_betw_matrices`, x, y)
 }
 
+fscale <- function(x) {
+    .Call(`_lineup2_fscale`, x)
+}
+
