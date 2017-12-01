@@ -4,7 +4,7 @@
 \alias{dist_betw_matrices}
 \title{Distance between columns of two matrices}
 \usage{
-dist_betw_matrices(x, y, distance = c("rmsd", "mad"))
+dist_betw_matrices(x, y, distance = c("rmsd", "mad"), cores = 1)
 }
 \arguments{
 \item{x}{A numeric matrix.}
@@ -14,6 +14,11 @@ dist_betw_matrices(x, y, distance = c("rmsd", "mad"))
 \item{distance}{Indicates whether to use Euclidean distance
 (\code{"rmsd"} for root mean square difference) or the mean absolute
 difference (\code{"mad"}).}
+
+\item{cores}{Number of CPU cores to use, for parallel calculations.
+(If \code{0}, use \code{\link[parallel:detectCores]{parallel::detectCores()}}.)
+Alternatively, this can be links to a set of cluster sockets, as
+produced by \code{\link[parallel:makeCluster]{parallel::makeCluster()}}.}
 }
 \value{
 If \code{x} is \code{p} by \code{n} and \code{y} is \code{p} by \code{m}, then the result
