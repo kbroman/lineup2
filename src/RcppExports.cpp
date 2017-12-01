@@ -6,25 +6,25 @@
 using namespace Rcpp;
 
 // rmsd_betw_matrices
-Rcpp::NumericMatrix rmsd_betw_matrices(Rcpp::NumericMatrix x, Rcpp::NumericMatrix y);
+Rcpp::NumericMatrix rmsd_betw_matrices(const Rcpp::NumericMatrix& x, const Rcpp::NumericMatrix& y);
 RcppExport SEXP _lineup2_rmsd_betw_matrices(SEXP xSEXP, SEXP ySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type x(xSEXP);
-    Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type y(ySEXP);
+    Rcpp::traits::input_parameter< const Rcpp::NumericMatrix& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const Rcpp::NumericMatrix& >::type y(ySEXP);
     rcpp_result_gen = Rcpp::wrap(rmsd_betw_matrices(x, y));
     return rcpp_result_gen;
 END_RCPP
 }
 // mad_betw_matrices
-Rcpp::NumericMatrix mad_betw_matrices(Rcpp::NumericMatrix x, Rcpp::NumericMatrix y);
+Rcpp::NumericMatrix mad_betw_matrices(const Rcpp::NumericMatrix& x, const Rcpp::NumericMatrix& y);
 RcppExport SEXP _lineup2_mad_betw_matrices(SEXP xSEXP, SEXP ySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type x(xSEXP);
-    Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type y(ySEXP);
+    Rcpp::traits::input_parameter< const Rcpp::NumericMatrix& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const Rcpp::NumericMatrix& >::type y(ySEXP);
     rcpp_result_gen = Rcpp::wrap(mad_betw_matrices(x, y));
     return rcpp_result_gen;
 END_RCPP

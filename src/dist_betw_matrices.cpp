@@ -5,8 +5,8 @@
 // d(i,j) = sqrt{ sum_k [x(k,i) - y(k,j)]^2 }
 //
 // [[Rcpp::export()]]
-Rcpp::NumericMatrix rmsd_betw_matrices(Rcpp::NumericMatrix x,
-                                       Rcpp::NumericMatrix y)
+Rcpp::NumericMatrix rmsd_betw_matrices(const Rcpp::NumericMatrix& x,
+                                       const Rcpp::NumericMatrix& y)
 {
     int n = x.cols();
     int m = y.cols();
@@ -23,8 +23,7 @@ Rcpp::NumericMatrix rmsd_betw_matrices(Rcpp::NumericMatrix x,
             double value = 0.0;
             int count = 0;
             for(int k=0; k<p; k++) {
-                if(!Rcpp::NumericVector::is_na(x(k,i)) &&
-                   !Rcpp::NumericVector::is_na(y(k,j))) {
+                if(isfinite(x(k,i)) && isfinite(y(k,j))) {
                     value += (x(k,i) - y(k,j))*(x(k,i) - y(k,j));
                     count++;
                 }
@@ -40,8 +39,8 @@ Rcpp::NumericMatrix rmsd_betw_matrices(Rcpp::NumericMatrix x,
 // like rmsd_betw_matrices but using the average absolute difference
 //
 // [[Rcpp::export()]]
-Rcpp::NumericMatrix mad_betw_matrices(Rcpp::NumericMatrix x,
-                                      Rcpp::NumericMatrix y)
+Rcpp::NumericMatrix mad_betw_matrices(const Rcpp::NumericMatrix& x,
+                                      const Rcpp::NumericMatrix& y)
 {
     int n = x.cols();
     int m = y.cols();
@@ -58,8 +57,7 @@ Rcpp::NumericMatrix mad_betw_matrices(Rcpp::NumericMatrix x,
             double value = 0.0;
             int count=0;
             for(int k=0; k<p; k++) {
-                if(!Rcpp::NumericVector::is_na(x(k,i)) &&
-                   !Rcpp::NumericVector::is_na(y(k,j))) {
+                if(isfinite(x(k,i)) && isfinite(y(k,j))) {
                     value += fabs(x(k,i) - y(k,j));
                     count++;
                 }
