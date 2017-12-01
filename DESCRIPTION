@@ -11,8 +11,7 @@ Maintainer: Karl W Broman <kbroman@biostat.wisc.edu>
 Depends:
     R (>= 3.1.0)
 Imports:
-    graphics,
-    stats,
+    parallel,
     Rcpp (>= 0.12.12)
 Suggests:
     testthat,
