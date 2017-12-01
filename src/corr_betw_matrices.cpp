@@ -18,6 +18,8 @@ NumericVector corr_betw_matrices_paired(const NumericMatrix& x, const NumericMat
     NumericVector result(n_col);
 
     for(int j=0; j<n_col; j++) {
+        checkUserInterrupt();  // check for ^C from user
+
         double sum=0.0;
         int count=0;
 
@@ -26,7 +28,7 @@ NumericVector corr_betw_matrices_paired(const NumericMatrix& x, const NumericMat
         NumericVector ys = fscalev_noNA(y(_,j), x(_,j));
 
         for(int i=0; i<n_row; i++) {
-            if(isfinite(xs[i]) && isfinite(ys[i])) {
+            if(R_finite(xs[i]) && R_finite(ys[i])) {
                 sum += (xs[i] * ys[i]);
                 count++;
             }
@@ -56,6 +58,7 @@ List corr_betw_matrices_unpaired_bestright(const NumericMatrix& x,
     IntegerVector yindex(n_col_x);
 
     for(int xcol=0; xcol < n_col_x; xcol++) {
+        checkUserInterrupt();  // check for ^C from user
 
         double best_corr = -2;
         int best_index = NA_INTEGER;
@@ -68,7 +71,7 @@ List corr_betw_matrices_unpaired_bestright(const NumericMatrix& x,
             double sum=0.0;
             int count=0;
             for(int i=0; i<n_row; i++) {
-                if(isfinite(xs[i]) && isfinite(ys[i])) {
+                if(R_finite(xs[i]) && R_finite(ys[i])) {
                     sum += (xs[i] * ys[i]);
                     count++;
                 }
@@ -122,6 +125,7 @@ List corr_betw_matrices_unpaired_bestpairs(const NumericMatrix& x,
     std::vector<int> yindex;
 
     for(int xcol=0; xcol < n_col_x; xcol++) {
+        checkUserInterrupt();  // check for ^C from user
         for(int ycol=0; ycol < n_col_y; ycol++) {
             // delicacy regarding scaling... need to omit x values where y is NA and vice versa
             NumericVector xs = fscalev_noNA(x(_,xcol), y(_,ycol));
@@ -131,7 +135,7 @@ List corr_betw_matrices_unpaired_bestpairs(const NumericMatrix& x,
             int count = 0;
 
             for(int i=0; i<n_row; i++) {
-                if(isfinite(xs[i]) && isfinite(ys[i])) {
+                if(R_finite(xs[i]) && R_finite(ys[i])) {
                     sum += (xs[i] * ys[i]);
                     count++;
                 }
@@ -169,6 +173,7 @@ NumericMatrix corr_betw_matrices_unpaired_all(const NumericMatrix& x,
     NumericMatrix result(n_col_x, n_col_y);
 
     for(int ycol=0; ycol<n_col_y; ycol++) {
+        checkUserInterrupt();  // check for ^C from user
 
         for(int xcol=0; xcol<n_col_x; xcol++) {
             // delicacy regarding scaling... need to omit x values where y is NA and vice versa
@@ -179,7 +184,7 @@ NumericMatrix corr_betw_matrices_unpaired_all(const NumericMatrix& x,
             int count = 0;
 
             for(int i=0; i<n_row; i++) {
-                if(isfinite(xs[i]) && isfinite(ys[i])) {
+                if(R_finite(xs[i]) && R_finite(ys[i])) {
                     sum += (xs[i] * ys[i]);
                     count++;
                 }
