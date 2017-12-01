@@ -27,11 +27,11 @@ test_that("fscalev (in c++) works", {
     set.seed(20171201)
 
     x <- rnorm(24, 20, 5)
-    expect_equivalent(fscalev(x), scale(x))
+    expect_equivalent(fscalev(x), as.numeric(scale(x)))
 
     # a couple of NAs
     x[2] <- x[24] <- NA
-    expect_equivalent(fscalev(x), scale(x))
+    expect_equivalent(fscalev(x), as.numeric(scale(x)))
 
     # all but one NA
     x[-3] <- NA
