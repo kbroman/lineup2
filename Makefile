@@ -1,5 +1,4 @@
-all: doc tests
-.PHONY: doc tests
+.PHONY: doc test
 
 # R_OPTS: --vanilla without --no-environ
 R_OPTS=--no-save --no-restore --no-init-file --no-site-file
