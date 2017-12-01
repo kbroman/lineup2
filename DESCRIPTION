@@ -20,6 +20,7 @@ Suggests:
     roxygen2
 License: GPL-3
 URL: https://github.com/kbroman/lineup2
+BugReports: https://github.com/kbroman/lineup2/issues
 LinkingTo: Rcpp
 LazyData: true
 Encoding: UTF-8
