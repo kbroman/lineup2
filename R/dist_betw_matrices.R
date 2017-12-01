@@ -14,6 +14,7 @@
 #'     is a `n` by `m` matrix whose (i,j)th element is the distance
 #'     between the ith column of `x` and the jth column of `y`.
 #'
+#' @seealso [corr_betw_matrices()]
 #' @export
 dist_betw_matrices <-
     function(x,y, distance=c("rmsd", "mad"))

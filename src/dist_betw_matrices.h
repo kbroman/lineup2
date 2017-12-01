@@ -13,4 +13,4 @@ Rcpp::NumericMatrix rmsd_betw_matrices(const Rcpp::NumericMatrix& x,
 Rcpp::NumericMatrix mad_betw_matrices(const Rcpp::NumericMatrix& x,
                                       const Rcpp::NumericMatrix& y);
 
-#endif // DIST_BETW_MATRICES
+#endif // DIST_BETW_MATRICES_H

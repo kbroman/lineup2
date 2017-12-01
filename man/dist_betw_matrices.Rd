@@ -23,3 +23,6 @@ between the ith column of \code{x} and the jth column of \code{y}.
 \description{
 Calculate the distances between the columns of one matrix and the columns of a second matrix.
 }
+\seealso{
+\code{\link[=corr_betw_matrices]{corr_betw_matrices()}}
+}
