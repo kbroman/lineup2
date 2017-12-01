@@ -44,7 +44,7 @@ dist_betw_matrices <-
         func <- mad_betw_matrices
     }
 
-    if(cores==1) {
+    if(n_cores(cores)==1) {
         result <- func(x, y)
     }
     else { # multi-core

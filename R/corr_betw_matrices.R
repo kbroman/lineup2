@@ -14,6 +14,11 @@
 #' @param what Indicates which correlations to calculate and return.  See
 #' value, below.
 #' @param corr_threshold Threshold on correlations if `what="bestpairs"`.
+#' @param cores Number of CPU cores to use, for parallel calculations.
+#' (If `0`, use [parallel::detectCores()].)
+#' Alternatively, this can be links to a set of cluster sockets, as
+#' produced by [parallel::makeCluster()].
+#'
 #' @return If `what="paired"`, the return value is a vector of
 #' correlations, between columns of `x` and the corresponding column of
 #' `y`.  `x` and `y` must have the same number of columns.
@@ -38,7 +43,7 @@
 #' @export
 corr_betw_matrices <-
     function(x, y, what=c("paired", "bestright", "bestpairs", "all"),
-             corr_threshold=0.9)
+             corr_threshold=0.9, cores=1)
 {
     if(!is.matrix(x)) x <- as.matrix(x)
     if(!is.matrix(y)) y <- as.matrix(y)
@@ -50,31 +55,47 @@ corr_betw_matrices <-
 
     what <- match.arg(what)
 
+    # set up cluster
+    cores <- setup_cluster(cores)
+
     switch(what,
-           paired=corr_betw_matrices_paired(x, y),
-           bestright=corr_betw_matrices_unpaired_bestright(x,y),
-           bestpairs=corr_betw_matrices_unpaired_bestpairs(x,y, corr_threshold),
-           all=corr_betw_matrices_unpaired_all(x,y))
+           paired=corr_betw_matrices_paired(x, y, cores=cores),
+           bestright=corr_betw_matrices_unpaired_bestright(x,y, cores=cores),
+           bestpairs=corr_betw_matrices_unpaired_bestpairs(x,y, corr_threshold, cores=cores),
+           all=corr_betw_matrices_unpaired_all(x,y, cores=cores))
 }
 
 corr_betw_matrices_paired <-
-    function(x,y)
+    function(x,y, cores=1)
 {
     px <- ncol(x)
     py <- ncol(y)
 
     if(py != px) stop('what="paired", but ncol(x) != ncol(y) [', px, ' != ', py, ']')
 
-    result <- .corr_betw_matrices_paired(x, y)
+    if(n_cores(cores)==1) {
+        result <- .corr_betw_matrices_paired(x, y)
+    } else {
+        f <- function(i) .corr_betw_matrices_paired(x[,i,drop=FALSE], y[,i,drop=FALSE])
+        result <- unlist(cluster_lapply(cores, 1:ncol(x), f))
+    }
+
     names(result) <- colnames(x)
     result
 }
 
 corr_betw_matrices_unpaired_bestright <-
-    function(x,y)
+    function(x,y, cores=1)
 {
-    result <- .corr_betw_matrices_unpaired_bestright(x, y)
-    result <- as.data.frame(result)
+    if(n_cores(cores)==1) {
+        result <- .corr_betw_matrices_unpaired_bestright(x, y)
+        result <- as.data.frame(result)
+    } else {
+        f <- function(i) as.data.frame(.corr_betw_matrices_unpaired_bestright(x[,i,drop=FALSE], y))
+        result <- cluster_lapply(cores, 1:ncol(x), f)
+        result <- do.call("rbind", result)
+    }
+
     colnames(result) <- c("corr", "yindex")
     result$yindex <- as.integer(result$yindex)
     rownames(result) <- colnames(x)
@@ -83,10 +104,22 @@ corr_betw_matrices_unpaired_bestright <-
 }
 
 corr_betw_matrices_unpaired_bestpairs <-
-    function(x, y, corr_threshold)
+    function(x, y, corr_threshold=0.9, cores=1)
 {
-    result <- .corr_betw_matrices_unpaired_bestpairs(x, y, corr_threshold)
-    result <- as.data.frame(result)
+    if(n_cores(cores)==1) {
+        result <- .corr_betw_matrices_unpaired_bestpairs(x, y, corr_threshold)
+        result <- as.data.frame(result)
+    }
+    else {
+        f <- function(i) {
+            result <- as.data.frame(.corr_betw_matrices_unpaired_bestpairs(x[,i,drop=FALSE], y, corr_threshold))
+            if(nrow(result) > 0) result$xindex <- rep(i, nrow(result))
+            result
+        }
+        result <- cluster_lapply(cores, 1:ncol(x), f)
+        result <- do.call("rbind", result)
+    }
+
     colnames(result) <- c("corr", "xindex", "yindex")
     result$xindex <- as.integer(result$xindex)
     result$yindex <- as.integer(result$yindex)
@@ -98,9 +131,17 @@ corr_betw_matrices_unpaired_bestpairs <-
 }
 
 corr_betw_matrices_unpaired_all <-
-    function(x, y)
+    function(x, y, cores=1)
 {
-    result <- .corr_betw_matrices_unpaired_all(x, y)
+    if(n_cores(cores)==1) {
+        result <- .corr_betw_matrices_unpaired_all(x, y)
+    }
+    else {
+        f <- function(i) .corr_betw_matrices_unpaired_all(x[,i,drop=FALSE], y)
+        result <- cluster_lapply(cores, 1:ncol(x), f)
+        result <- matrix(unlist(result), ncol=ncol(y), byrow=TRUE)
+    }
+
     dimnames(result) <- list(colnames(x), colnames(y))
     result
 }

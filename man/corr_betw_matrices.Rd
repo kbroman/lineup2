@@ -5,7 +5,7 @@
 \title{Calculate correlations between columns of two matrices}
 \usage{
 corr_betw_matrices(x, y, what = c("paired", "bestright", "bestpairs", "all"),
-  corr_threshold = 0.9)
+  corr_threshold = 0.9, cores = 1)
 }
 \arguments{
 \item{x}{A numeric matrix.}
@@ -16,6 +16,11 @@ corr_betw_matrices(x, y, what = c("paired", "bestright", "bestpairs", "all"),
 value, below.}
 
 \item{corr_threshold}{Threshold on correlations if \code{what="bestpairs"}.}
+
+\item{cores}{Number of CPU cores to use, for parallel calculations.
+(If \code{0}, use \code{\link[parallel:detectCores]{parallel::detectCores()}}.)
+Alternatively, this can be links to a set of cluster sockets, as
+produced by \code{\link[parallel:makeCluster]{parallel::makeCluster()}}.}
 }
 \value{
 If \code{what="paired"}, the return value is a vector of
