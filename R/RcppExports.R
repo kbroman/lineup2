@@ -25,15 +25,7 @@ mad_betw_matrices <- function(x, y) {
     .Call(`_lineup2_mad_betw_matrices`, x, y)
 }
 
-fscale <- function(x) {
-    .Call(`_lineup2_fscale`, x)
-}
-
-fscalev <- function(x) {
-    .Call(`_lineup2_fscalev`, x)
-}
-
-fscalev_noNA <- function(x, y) {
-    .Call(`_lineup2_fscalev_noNA`, x, y)
+fscale <- function(x, y) {
+    .Call(`_lineup2_fscale`, x, y)
 }
 

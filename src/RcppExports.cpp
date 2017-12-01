@@ -79,36 +79,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // fscale
-NumericMatrix fscale(const NumericMatrix& x);
-RcppExport SEXP _lineup2_fscale(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const NumericMatrix& >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(fscale(x));
-    return rcpp_result_gen;
-END_RCPP
-}
-// fscalev
-NumericVector fscalev(const NumericVector& x);
-RcppExport SEXP _lineup2_fscalev(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const NumericVector& >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(fscalev(x));
-    return rcpp_result_gen;
-END_RCPP
-}
-// fscalev_noNA
-NumericVector fscalev_noNA(const NumericVector& x, const NumericVector& y);
-RcppExport SEXP _lineup2_fscalev_noNA(SEXP xSEXP, SEXP ySEXP) {
+NumericVector fscale(const NumericVector& x, const NumericVector& y);
+RcppExport SEXP _lineup2_fscale(SEXP xSEXP, SEXP ySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const NumericVector& >::type x(xSEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type y(ySEXP);
-    rcpp_result_gen = Rcpp::wrap(fscalev_noNA(x, y));
+    rcpp_result_gen = Rcpp::wrap(fscale(x, y));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -120,9 +98,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_lineup2_corr_betw_matrices_unpaired_all", (DL_FUNC) &_lineup2_corr_betw_matrices_unpaired_all, 2},
     {"_lineup2_rmsd_betw_matrices", (DL_FUNC) &_lineup2_rmsd_betw_matrices, 2},
     {"_lineup2_mad_betw_matrices", (DL_FUNC) &_lineup2_mad_betw_matrices, 2},
-    {"_lineup2_fscale", (DL_FUNC) &_lineup2_fscale, 1},
-    {"_lineup2_fscalev", (DL_FUNC) &_lineup2_fscalev, 1},
-    {"_lineup2_fscalev_noNA", (DL_FUNC) &_lineup2_fscalev_noNA, 2},
+    {"_lineup2_fscale", (DL_FUNC) &_lineup2_fscale, 2},
     {NULL, NULL, 0}
 };
 

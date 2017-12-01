@@ -24,8 +24,8 @@ NumericVector corr_betw_matrices_paired(const NumericMatrix& x, const NumericMat
         int count=0;
 
         // delicacy regarding scaling... need to omit x values where y is NA and vice versa
-        NumericVector xs = fscalev_noNA(x(_,j), y(_,j));
-        NumericVector ys = fscalev_noNA(y(_,j), x(_,j));
+        NumericVector xs = fscale(x(_,j), y(_,j));
+        NumericVector ys = fscale(y(_,j), x(_,j));
 
         for(int i=0; i<n_row; i++) {
             if(R_finite(xs[i]) && R_finite(ys[i])) {
@@ -65,8 +65,8 @@ List corr_betw_matrices_unpaired_bestright(const NumericMatrix& x,
 
         for(int ycol=0; ycol < n_col_y; ycol++) {
             // delicacy regarding scaling... need to omit x values where y is NA and vice versa
-            NumericVector xs = fscalev_noNA(x(_,xcol), y(_,ycol));
-            NumericVector ys = fscalev_noNA(y(_,ycol), x(_,xcol));
+            NumericVector xs = fscale(x(_,xcol), y(_,ycol));
+            NumericVector ys = fscale(y(_,ycol), x(_,xcol));
 
             double sum=0.0;
             int count=0;
@@ -128,8 +128,8 @@ List corr_betw_matrices_unpaired_bestpairs(const NumericMatrix& x,
         checkUserInterrupt();  // check for ^C from user
         for(int ycol=0; ycol < n_col_y; ycol++) {
             // delicacy regarding scaling... need to omit x values where y is NA and vice versa
-            NumericVector xs = fscalev_noNA(x(_,xcol), y(_,ycol));
-            NumericVector ys = fscalev_noNA(y(_,ycol), x(_,xcol));
+            NumericVector xs = fscale(x(_,xcol), y(_,ycol));
+            NumericVector ys = fscale(y(_,ycol), x(_,xcol));
 
             double sum = 0.0;
             int count = 0;
@@ -177,8 +177,8 @@ NumericMatrix corr_betw_matrices_unpaired_all(const NumericMatrix& x,
 
         for(int xcol=0; xcol<n_col_x; xcol++) {
             // delicacy regarding scaling... need to omit x values where y is NA and vice versa
-            NumericVector xs = fscalev_noNA(x(_,xcol), y(_,ycol));
-            NumericVector ys = fscalev_noNA(y(_,ycol), x(_,xcol));
+            NumericVector xs = fscale(x(_,xcol), y(_,ycol));
+            NumericVector ys = fscale(y(_,ycol), x(_,xcol));
 
             double sum=0.0;
             int count = 0;
