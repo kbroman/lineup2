@@ -22,9 +22,9 @@ NumericMatrix fscale(const NumericMatrix& x)
 
         // get mean and sd
         for(int i=0; i<n_row; i++) {
-            if(isfinite(x(i,j))) {
+            if(R_finite(x(i,j))) {
                 count++;
-                if(!isfinite(first)) first = x(i,j); // first non-missing value
+                if(!R_finite(first)) first = x(i,j); // first non-missing value
                 else {
                     // sum(x) and sum(x*x) with x centered at first non-missing value
                     sum += (diff=(x(i,j)-first));
@@ -42,7 +42,7 @@ NumericMatrix fscale(const NumericMatrix& x)
             sumsq = sqrt((sumsq - (sum*sum)/(double)count)/(double)(count-1));
             sum /= (double)count;
             for(int i=0; i<n_row; i++) {
-                if(isfinite(x(i,j))) result(i,j) = (x(i,j) - sum - first)/(sumsq);
+                if(R_finite(x(i,j))) result(i,j) = (x(i,j) - sum - first)/(sumsq);
             }
         }
     }
@@ -65,9 +65,9 @@ NumericVector fscalev(const NumericVector& x)
 
     // get mean and sd
     for(int i=0; i<n; i++) {
-        if(isfinite(x[i])) {
+        if(R_finite(x[i])) {
             count++;
-            if(!isfinite(first)) first = x[i]; // first non-missing value
+            if(!R_finite(first)) first = x[i]; // first non-missing value
             else {
                 // sum(x) and sum(x*x) with x centered at first non-missing value
                 sum += (diff=(x[i]-first));
@@ -83,7 +83,7 @@ NumericVector fscalev(const NumericVector& x)
         sumsq = sqrt((sumsq - (sum*sum)/(double)count)/(double)(count-1));
         sum /= (double)count;
         for(int i=0; i<n; i++) {
-            if(isfinite(x[i])) result[i] = (x[i] - sum - first)/(sumsq);
+            if(R_finite(x[i])) result[i] = (x[i] - sum - first)/(sumsq);
         }
     }
 
@@ -108,9 +108,9 @@ NumericVector fscalev_noNA(const NumericVector& x,
 
     // get mean and sd
     for(int i=0; i<n; i++) {
-        if(isfinite(x[i]) && isfinite(y[i])) {
+        if(R_finite(x[i]) && R_finite(y[i])) {
             count++;
-            if(!isfinite(first)) first = x[i]; // first non-missing value
+            if(!R_finite(first)) first = x[i]; // first non-missing value
             else {
                 // sum(x) and sum(x*x) with x centered at first non-missing value
                 sum += (diff=(x[i]-first));
@@ -126,7 +126,7 @@ NumericVector fscalev_noNA(const NumericVector& x,
         sumsq = sqrt((sumsq - (sum*sum)/(double)count)/(double)(count-1));
         sum /= (double)count;
         for(int i=0; i<n; i++) {
-            if(isfinite(x[i]) && isfinite(y[i])) {
+            if(R_finite(x[i]) && R_finite(y[i])) {
                 result[i] = (x[i] - sum - first)/(sumsq);
             }
         }
