@@ -12,17 +12,17 @@ Rcpp::NumericVector corr_betw_matrices_paired(const Rcpp::NumericMatrix& x,
 
 // for each column of left matrix, find the column in the right matrix
 // with the highest correlation
-Rcpp::List corbetw2mat_unpaired_bestright(const Rcpp::NumericMatrix& x,
-                                          const Rcpp::NumericMatrix& y);
+Rcpp::List corr_betw_matrices_unpaired_bestright(const Rcpp::NumericMatrix& x,
+                                                 const Rcpp::NumericMatrix& y);
 
 // return correlations between column of left matrix and column of right matrix
 // that exceed corr_threshold
-Rcpp::List corbetw2mat_unpaired_best(const Rcpp::NumericMatrix& x,
-                                     const Rcpp::NumericMatrix& y,
-                                     const double corr_threshold);
+Rcpp::List corr_betw_matrices_unpaired_bestpairs(const Rcpp::NumericMatrix& x,
+                                                 const Rcpp::NumericMatrix& y,
+                                                 const double corr_threshold);
 
 // calculate full set of correlations between columns of x and columns of y
-Rcpp::NumericMatrix corbetw2mat_unpaired_all(const Rcpp::NumericMatrix& x,
-                                             const Rcpp::NumericMatrix& y);
+Rcpp::NumericMatrix corr_betw_matrices_unpaired_all(const Rcpp::NumericMatrix& x,
+                                                    const Rcpp::NumericMatrix& y);
 
 #endif // CORR_BETW_MATRICES_H

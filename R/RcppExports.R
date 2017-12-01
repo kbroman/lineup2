@@ -5,16 +5,16 @@ corr_betw_matrices_paired <- function(x, y) {
     .Call(`_lineup2_corr_betw_matrices_paired`, x, y)
 }
 
-corbetw2mat_unpaired_bestright <- function(x, y) {
-    .Call(`_lineup2_corbetw2mat_unpaired_bestright`, x, y)
+corr_betw_matrices_unpaired_bestright <- function(x, y) {
+    .Call(`_lineup2_corr_betw_matrices_unpaired_bestright`, x, y)
 }
 
-corbetw2mat_unpaired_best <- function(x, y, corr_threshold) {
-    .Call(`_lineup2_corbetw2mat_unpaired_best`, x, y, corr_threshold)
+corr_betw_matrices_unpaired_bestpairs <- function(x, y, corr_threshold) {
+    .Call(`_lineup2_corr_betw_matrices_unpaired_bestpairs`, x, y, corr_threshold)
 }
 
-corbetw2mat_unpaired_all <- function(x, y) {
-    .Call(`_lineup2_corbetw2mat_unpaired_all`, x, y)
+corr_betw_matrices_unpaired_all <- function(x, y) {
+    .Call(`_lineup2_corr_betw_matrices_unpaired_all`, x, y)
 }
 
 rmsd_betw_matrices <- function(x, y) {
@@ -31,5 +31,9 @@ fscale <- function(x) {
 
 fscalev <- function(x) {
     .Call(`_lineup2_fscalev`, x)
+}
+
+fscalev_noNA <- function(x, y) {
+    .Call(`_lineup2_fscalev_noNA`, x, y)
 }
 

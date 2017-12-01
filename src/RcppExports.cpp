@@ -17,40 +17,40 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// corbetw2mat_unpaired_bestright
-List corbetw2mat_unpaired_bestright(const NumericMatrix& x, const NumericMatrix& y);
-RcppExport SEXP _lineup2_corbetw2mat_unpaired_bestright(SEXP xSEXP, SEXP ySEXP) {
+// corr_betw_matrices_unpaired_bestright
+List corr_betw_matrices_unpaired_bestright(const NumericMatrix& x, const NumericMatrix& y);
+RcppExport SEXP _lineup2_corr_betw_matrices_unpaired_bestright(SEXP xSEXP, SEXP ySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const NumericMatrix& >::type x(xSEXP);
     Rcpp::traits::input_parameter< const NumericMatrix& >::type y(ySEXP);
-    rcpp_result_gen = Rcpp::wrap(corbetw2mat_unpaired_bestright(x, y));
+    rcpp_result_gen = Rcpp::wrap(corr_betw_matrices_unpaired_bestright(x, y));
     return rcpp_result_gen;
 END_RCPP
 }
-// corbetw2mat_unpaired_best
-List corbetw2mat_unpaired_best(const NumericMatrix& x, const NumericMatrix& y, const double corr_threshold);
-RcppExport SEXP _lineup2_corbetw2mat_unpaired_best(SEXP xSEXP, SEXP ySEXP, SEXP corr_thresholdSEXP) {
+// corr_betw_matrices_unpaired_bestpairs
+List corr_betw_matrices_unpaired_bestpairs(const NumericMatrix& x, const NumericMatrix& y, const double corr_threshold);
+RcppExport SEXP _lineup2_corr_betw_matrices_unpaired_bestpairs(SEXP xSEXP, SEXP ySEXP, SEXP corr_thresholdSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const NumericMatrix& >::type x(xSEXP);
     Rcpp::traits::input_parameter< const NumericMatrix& >::type y(ySEXP);
     Rcpp::traits::input_parameter< const double >::type corr_threshold(corr_thresholdSEXP);
-    rcpp_result_gen = Rcpp::wrap(corbetw2mat_unpaired_best(x, y, corr_threshold));
+    rcpp_result_gen = Rcpp::wrap(corr_betw_matrices_unpaired_bestpairs(x, y, corr_threshold));
     return rcpp_result_gen;
 END_RCPP
 }
-// corbetw2mat_unpaired_all
-NumericMatrix corbetw2mat_unpaired_all(const NumericMatrix& x, const NumericMatrix& y);
-RcppExport SEXP _lineup2_corbetw2mat_unpaired_all(SEXP xSEXP, SEXP ySEXP) {
+// corr_betw_matrices_unpaired_all
+NumericMatrix corr_betw_matrices_unpaired_all(const NumericMatrix& x, const NumericMatrix& y);
+RcppExport SEXP _lineup2_corr_betw_matrices_unpaired_all(SEXP xSEXP, SEXP ySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const NumericMatrix& >::type x(xSEXP);
     Rcpp::traits::input_parameter< const NumericMatrix& >::type y(ySEXP);
-    rcpp_result_gen = Rcpp::wrap(corbetw2mat_unpaired_all(x, y));
+    rcpp_result_gen = Rcpp::wrap(corr_betw_matrices_unpaired_all(x, y));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -100,16 +100,29 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// fscalev_noNA
+NumericVector fscalev_noNA(const NumericVector& x, const NumericVector& y);
+RcppExport SEXP _lineup2_fscalev_noNA(SEXP xSEXP, SEXP ySEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type y(ySEXP);
+    rcpp_result_gen = Rcpp::wrap(fscalev_noNA(x, y));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_lineup2_corr_betw_matrices_paired", (DL_FUNC) &_lineup2_corr_betw_matrices_paired, 2},
-    {"_lineup2_corbetw2mat_unpaired_bestright", (DL_FUNC) &_lineup2_corbetw2mat_unpaired_bestright, 2},
-    {"_lineup2_corbetw2mat_unpaired_best", (DL_FUNC) &_lineup2_corbetw2mat_unpaired_best, 3},
-    {"_lineup2_corbetw2mat_unpaired_all", (DL_FUNC) &_lineup2_corbetw2mat_unpaired_all, 2},
+    {"_lineup2_corr_betw_matrices_unpaired_bestright", (DL_FUNC) &_lineup2_corr_betw_matrices_unpaired_bestright, 2},
+    {"_lineup2_corr_betw_matrices_unpaired_bestpairs", (DL_FUNC) &_lineup2_corr_betw_matrices_unpaired_bestpairs, 3},
+    {"_lineup2_corr_betw_matrices_unpaired_all", (DL_FUNC) &_lineup2_corr_betw_matrices_unpaired_all, 2},
     {"_lineup2_rmsd_betw_matrices", (DL_FUNC) &_lineup2_rmsd_betw_matrices, 2},
     {"_lineup2_mad_betw_matrices", (DL_FUNC) &_lineup2_mad_betw_matrices, 2},
     {"_lineup2_fscale", (DL_FUNC) &_lineup2_fscale, 1},
     {"_lineup2_fscalev", (DL_FUNC) &_lineup2_fscalev, 1},
+    {"_lineup2_fscalev_noNA", (DL_FUNC) &_lineup2_fscalev_noNA, 2},
     {NULL, NULL, 0}
 };
 

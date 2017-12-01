@@ -5,7 +5,7 @@
 \title{Calculate correlations between columns of two matrices}
 \usage{
 corr_betw_matrices(x, y, what = c("paired", "bestright", "bestpairs", "all"),
-  corthresh = 0.9)
+  corr_threshold = 0.9)
 }
 \arguments{
 \item{x}{A numeric matrix.}
@@ -15,7 +15,7 @@ corr_betw_matrices(x, y, what = c("paired", "bestright", "bestpairs", "all"),
 \item{what}{Indicates which correlations to calculate and return.  See
 value, below.}
 
-\item{corthresh}{Threshold on correlations if \code{what="bestpairs"}.}
+\item{corr_threshold}{Threshold on correlations if \code{what="bestpairs"}.}
 }
 \value{
 If \code{what="paired"}, the return value is a vector of
@@ -30,7 +30,7 @@ case of ties, we give the first one.)
 
 If \code{what="bestpairs"}, we return a data frame with five columns,
 containing all pairs of columns (with one in \code{x} and one in \code{y})
-with correlation \eqn{\ge} \code{corthresh}.  Each row corresponds to a
+with correlation \eqn{\ge} \code{corr_threshold}.  Each row corresponds to a
 column pair, and contains the correlation and then the \code{x}- and
 \code{y}-column indices followed by the \code{x}- and \code{y}-column names.
 

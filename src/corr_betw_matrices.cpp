@@ -15,20 +15,19 @@ NumericVector corr_betw_matrices_paired(const NumericMatrix& x, const NumericMat
     if(n_row != y.rows() || n_col != y.cols())
         throw std::invalid_argument("dim(x) != dim(y)");
 
-    // scale the columns of each
-    // non-finite values -> NA_REAL
-    NumericMatrix xs = fscale(x);
-    NumericMatrix ys = fscale(y);
-
     NumericVector result(n_col);
-
 
     for(int j=0; j<n_col; j++) {
         double sum=0.0;
         int count=0;
+
+        // delicacy regarding scaling... need to omit x values where y is NA and vice versa
+        NumericVector xs = fscalev_noNA(x(_,j), y(_,j));
+        NumericVector ys = fscalev_noNA(y(_,j), x(_,j));
+
         for(int i=0; i<n_row; i++) {
-            if(isfinite(x(i,j)) && isfinite(y(i,j))) {
-                sum += (xs(i,j) * ys(i,j));
+            if(isfinite(xs[i]) && isfinite(ys[i])) {
+                sum += (xs[i] * ys[i]);
                 count++;
             }
         }
@@ -43,8 +42,8 @@ NumericVector corr_betw_matrices_paired(const NumericMatrix& x, const NumericMat
 // with the highest correlation
 //
 // [[Rcpp::export()]]
-List corbetw2mat_unpaired_bestright(const NumericMatrix& x,
-                                             const NumericMatrix& y)
+List corr_betw_matrices_unpaired_bestright(const NumericMatrix& x,
+                                           const NumericMatrix& y)
 {
     const int n_row = x.rows();
     if(y.rows() != n_row)
@@ -57,19 +56,20 @@ List corbetw2mat_unpaired_bestright(const NumericMatrix& x,
     IntegerVector yindex(n_col_x);
 
     for(int xcol=0; xcol < n_col_x; xcol++) {
-        NumericVector xs = fscalev(x(_,xcol));
 
         double best_corr = -2;
         int best_index = NA_INTEGER;
 
         for(int ycol=0; ycol < n_col_y; ycol++) {
-            NumericVector ys = fscalev(y(_,ycol)); // doing repeatedly but saving memory
+            // delicacy regarding scaling... need to omit x values where y is NA and vice versa
+            NumericVector xs = fscalev_noNA(x(_,xcol), y(_,ycol));
+            NumericVector ys = fscalev_noNA(y(_,ycol), x(_,xcol));
 
             double sum=0.0;
             int count=0;
             for(int i=0; i<n_row; i++) {
                 if(isfinite(xs[i]) && isfinite(ys[i])) {
-                    sum += (xs[i] + ys[i]);
+                    sum += (xs[i] * ys[i]);
                     count++;
                 }
             }
@@ -106,9 +106,9 @@ List corbetw2mat_unpaired_bestright(const NumericMatrix& x,
 // that exceed corr_threshold
 //
 // [[Rcpp::export()]]
-List corbetw2mat_unpaired_best(const NumericMatrix& x,
-                               const NumericMatrix& y,
-                               const double corr_threshold)
+List corr_betw_matrices_unpaired_bestpairs(const NumericMatrix& x,
+                                           const NumericMatrix& y,
+                                           const double corr_threshold)
 {
     const int n_row = x.rows();
     if(y.rows() != n_row)
@@ -122,9 +122,10 @@ List corbetw2mat_unpaired_best(const NumericMatrix& x,
     std::vector<int> yindex;
 
     for(int xcol=0; xcol < n_col_x; xcol++) {
-        NumericVector xs = fscalev(x(_,xcol));
         for(int ycol=0; ycol < n_col_y; ycol++) {
-            NumericVector ys = fscalev(y(_,ycol)); // doing repeatedly but saving memory
+            // delicacy regarding scaling... need to omit x values where y is NA and vice versa
+            NumericVector xs = fscalev_noNA(x(_,xcol), y(_,ycol));
+            NumericVector ys = fscalev_noNA(y(_,ycol), x(_,xcol));
 
             double sum = 0.0;
             int count = 0;
@@ -156,8 +157,8 @@ List corbetw2mat_unpaired_best(const NumericMatrix& x,
 // calculate full set of correlations between columns of x and columns of y
 //
 // [[Rcpp::export()]]
-NumericMatrix corbetw2mat_unpaired_all(const NumericMatrix& x,
-                                       const NumericMatrix& y)
+NumericMatrix corr_betw_matrices_unpaired_all(const NumericMatrix& x,
+                                              const NumericMatrix& y)
 {
     const int n_row = x.rows();
     if(y.rows() != n_row)
@@ -168,16 +169,14 @@ NumericMatrix corbetw2mat_unpaired_all(const NumericMatrix& x,
     NumericMatrix result(n_col_x, n_col_y);
 
     for(int ycol=0; ycol<n_col_y; ycol++) {
-        NumericVector ys = fscalev(y(_,ycol));
 
         for(int xcol=0; xcol<n_col_x; xcol++) {
+            // delicacy regarding scaling... need to omit x values where y is NA and vice versa
+            NumericVector xs = fscalev_noNA(x(_,xcol), y(_,ycol));
+            NumericVector ys = fscalev_noNA(y(_,ycol), x(_,xcol));
 
             double sum=0.0;
             int count = 0;
-
-            // doing this repeatedly to save memory
-            // (assuming memory more important than time)
-            NumericVector xs = fscalev(x(_,ycol));
 
             for(int i=0; i<n_row; i++) {
                 if(isfinite(xs[i]) && isfinite(ys[i])) {

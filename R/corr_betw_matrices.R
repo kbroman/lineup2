@@ -13,7 +13,7 @@
 #' @param y A numeric matrix with the same number of rows as `x`.
 #' @param what Indicates which correlations to calculate and return.  See
 #' value, below.
-#' @param corthresh Threshold on correlations if `what="bestpairs"`.
+#' @param corr_threshold Threshold on correlations if `what="bestpairs"`.
 #' @return If `what="paired"`, the return value is a vector of
 #' correlations, between columns of `x` and the corresponding column of
 #' `y`.  `x` and `y` must have the same number of columns.
@@ -26,7 +26,7 @@
 #'
 #' If `what="bestpairs"`, we return a data frame with five columns,
 #' containing all pairs of columns (with one in `x` and one in `y`)
-#' with correlation \eqn{\ge} `corthresh`.  Each row corresponds to a
+#' with correlation \eqn{\ge} `corr_threshold`.  Each row corresponds to a
 #' column pair, and contains the correlation and then the `x`- and
 #' `y`-column indices followed by the `x`- and `y`-column names.
 #'
@@ -38,7 +38,7 @@
 #' @export
 corr_betw_matrices <-
     function(x, y, what=c("paired", "bestright", "bestpairs", "all"),
-             corthresh=0.9)
+             corr_threshold=0.9)
 {
     if(!is.matrix(x)) x <- as.matrix(x)
     if(!is.matrix(y)) y <- as.matrix(y)
@@ -67,7 +67,7 @@ corr_betw_matrices <-
         result <- cbind(result, ycol=colnames(y)[result[,2]], stringsAsFactors=FALSE)
     }
     else if(what=="bestpairs") {
-        result <- corr_betw_matrices_unpaired_bestpairs(x, y, corthresulth)
+        result <- corr_betw_matrices_unpaired_bestpairs(x, y, corr_threshold)
         result <- as.data.frame(result)
         colnames(result) <- c("corr", "xindex", "yindex")
         result$xindex <- as.integer(result$xindex)
