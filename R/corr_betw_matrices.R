@@ -45,42 +45,62 @@ corr_betw_matrices <-
 
     if(nrow(x) != nrow(y)) stop("nrow(x) != nrow(y) [", nrow(x), " != ", nrow(y), "]")
 
-    px <- ncol(x)
-    py <- ncol(y)
-    what <- match.arg(what)
-
     if(is.null(colnames(x))) colnames(x) <- paste("V", 1:ncol(x), sep="")
     if(is.null(colnames(y))) colnames(y) <- paste("V", 1:ncol(y), sep="")
 
-    if(what=="paired") {
-        if(py != px) stop('what="paired", but ncol(x) != ncol(y) [', px, ' != ', py, ']')
-        result <- corr_betw_matrices_paired(x, y)
-        names(result) <- colnames(x)
-    }
+    what <- match.arg(what)
 
-    else if(what=="bestright") {
-        result <- corr_betw_matrices_unpaired_bestright(x, y)
-        result <- as.data.frame(result)
-        colnames(result) <- c("corr", "yindex")
-        result$yindex <- as.integer(result$yindex)
-        rownames(result) <- colnames(x)
-        result <- cbind(result, ycol=colnames(y)[result[,2]], stringsAsFactors=FALSE)
-    }
-    else if(what=="bestpairs") {
-        result <- corr_betw_matrices_unpaired_bestpairs(x, y, corr_threshold)
-        result <- as.data.frame(result)
-        colnames(result) <- c("corr", "xindex", "yindex")
-        result$xindex <- as.integer(result$xindex)
-        result$yindex <- as.integer(result$yindex)
-        result <- cbind(result,
-                     xcol=colnames(x)[result[,2]],
-                     ycol=colnames(y)[result[,3]],
-                     stringsAsFactors=FALSE)
-    }
-    else {
-        result <- corr_betw_matrices_unpaired_all(x, y)
-        dimnames(result) <- list(colnames(x), colnames(y))
-    }
+    switch(what,
+           paired=corr_betw_matrices_paired(x, y),
+           bestright=corr_betw_matrices_unpaired_bestright(x,y),
+           bestpairs=corr_betw_matrices_unpaired_bestpairs(x,y, corr_threshold),
+           all=corr_betw_matrices_unpaired_all(x,y))
+}
 
+corr_betw_matrices_paired <-
+    function(x,y)
+{
+    px <- ncol(x)
+    py <- ncol(y)
+
+    if(py != px) stop('what="paired", but ncol(x) != ncol(y) [', px, ' != ', py, ']')
+
+    result <- .corr_betw_matrices_paired(x, y)
+    names(result) <- colnames(x)
+    result
+}
+
+corr_betw_matrices_unpaired_bestright <-
+    function(x,y)
+{
+    result <- .corr_betw_matrices_unpaired_bestright(x, y)
+    result <- as.data.frame(result)
+    colnames(result) <- c("corr", "yindex")
+    result$yindex <- as.integer(result$yindex)
+    rownames(result) <- colnames(x)
+
+    cbind(result, ycol=colnames(y)[result[,2]], stringsAsFactors=FALSE)
+}
+
+corr_betw_matrices_unpaired_bestpairs <-
+    function(x, y, corr_threshold)
+{
+    result <- .corr_betw_matrices_unpaired_bestpairs(x, y, corr_threshold)
+    result <- as.data.frame(result)
+    colnames(result) <- c("corr", "xindex", "yindex")
+    result$xindex <- as.integer(result$xindex)
+    result$yindex <- as.integer(result$yindex)
+
+    cbind(result,
+          xcol=colnames(x)[result[,2]],
+          ycol=colnames(y)[result[,3]],
+          stringsAsFactors=FALSE)
+}
+
+corr_betw_matrices_unpaired_all <-
+    function(x, y)
+{
+    result <- .corr_betw_matrices_unpaired_all(x, y)
+    dimnames(result) <- list(colnames(x), colnames(y))
     result
 }

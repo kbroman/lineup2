@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // calculate correlation between columns of x and corresponding columns of y
 //
-// [[Rcpp::export()]]
+// [[Rcpp::export(".corr_betw_matrices_paired")]]
 NumericVector corr_betw_matrices_paired(const NumericMatrix& x, const NumericMatrix& y)
 {
     const int n_row = x.rows();
@@ -43,7 +43,7 @@ NumericVector corr_betw_matrices_paired(const NumericMatrix& x, const NumericMat
 // for each column of left matrix, find the column in the right matrix
 // with the highest correlation
 //
-// [[Rcpp::export()]]
+// [[Rcpp::export(".corr_betw_matrices_unpaired_bestright")]]
 List corr_betw_matrices_unpaired_bestright(const NumericMatrix& x,
                                            const NumericMatrix& y)
 {
@@ -108,7 +108,7 @@ List corr_betw_matrices_unpaired_bestright(const NumericMatrix& x,
 // return correlations between column of left matrix and column of right matrix
 // that exceed corr_threshold
 //
-// [[Rcpp::export()]]
+// [[Rcpp::export(".corr_betw_matrices_unpaired_bestpairs")]]
 List corr_betw_matrices_unpaired_bestpairs(const NumericMatrix& x,
                                            const NumericMatrix& y,
                                            const double corr_threshold)
@@ -160,7 +160,7 @@ List corr_betw_matrices_unpaired_bestpairs(const NumericMatrix& x,
 
 // calculate full set of correlations between columns of x and columns of y
 //
-// [[Rcpp::export()]]
+// [[Rcpp::export(".corr_betw_matrices_unpaired_all")]]
 NumericMatrix corr_betw_matrices_unpaired_all(const NumericMatrix& x,
                                               const NumericMatrix& y)
 {
