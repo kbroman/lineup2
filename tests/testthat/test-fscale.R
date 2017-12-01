@@ -42,3 +42,23 @@ test_that("fscalev (in c++) works", {
     expect_equal(fscalev(x), x)
 
 })
+
+test_that("fscalev_nona (in c++) works", {
+
+    set.seed(20171201)
+
+    x <- rnorm(24, 20, 5)
+    y <- rnorm(24, 20, 5)
+    expect_equivalent(fscalev_noNA(x, y), fscalev(x))
+
+    # a couple of NAs
+    x[2] <- x[24] <- NA
+    expect_equivalent(fscalev_noNA(x, y), fscalev(x))
+
+    # a couple of NAs in y
+    y[3] <- y[12] <- NA
+    z <- x
+    z[3] <- z[12] <- NA
+    expect_equivalent(fscalev_noNA(x, y), fscalev(z))
+
+})
