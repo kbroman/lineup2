@@ -18,4 +18,27 @@ test_that("fscale (in c++) works", {
     x[-3,2] <- NA
     result[,1:2] <- x[,1:2]
     expect_equal(fscale(x), result)
+
+})
+
+
+test_that("fscalev (in c++) works", {
+
+    set.seed(20171201)
+
+    x <- rnorm(24, 20, 5)
+    expect_equivalent(fscalev(x), scale(x))
+
+    # a couple of NAs
+    x[2] <- x[24] <- NA
+    expect_equivalent(fscalev(x), scale(x))
+
+    # all but one NA
+    x[-3] <- NA
+    expect_equal(fscalev(x), x)
+
+    # all NAs
+    x[3] <- NA
+    expect_equal(fscalev(x), x)
+
 })

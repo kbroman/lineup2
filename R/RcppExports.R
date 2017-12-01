@@ -13,3 +13,7 @@ fscale <- function(x) {
     .Call(`_lineup2_fscale`, x)
 }
 
+fscalev <- function(x) {
+    .Call(`_lineup2_fscalev`, x)
+}
+

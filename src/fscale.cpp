@@ -9,8 +9,8 @@ using namespace Rcpp;
 // [[Rcpp::export()]]
 NumericMatrix fscale(const NumericMatrix& x)
 {
-    int n_row = x.rows();
-    int n_col = x.cols();
+    const int n_row = x.rows();
+    const int n_col = x.cols();
 
     // result matrix, filled with missing values
     NumericMatrix result(n_row, n_col);
@@ -44,6 +44,46 @@ NumericMatrix fscale(const NumericMatrix& x)
             for(int i=0; i<n_row; i++) {
                 if(isfinite(x(i,j))) result(i,j) = (x(i,j) - sum - first)/(sumsq);
             }
+        }
+    }
+
+    return result;
+}
+
+// fscalev: standardize a single vector
+// The one-pass method can have a lot of round-off error, but it is quick.
+// [[Rcpp::export()]]
+NumericVector fscalev(const NumericVector& x)
+{
+    const int n = x.size();
+
+    // result matrix, filled with missing values
+    NumericVector result(n);
+
+    double sum=0.0, sumsq=0.0, diff, first=NA_REAL;
+    int count=0;
+
+    // get mean and sd
+    for(int i=0; i<n; i++) {
+        if(isfinite(x[i])) {
+            count++;
+            if(!isfinite(first)) first = x[i]; // first non-missing value
+            else {
+                // sum(x) and sum(x*x) with x centered at first non-missing value
+                sum += (diff=(x[i]-first));
+                sumsq += (diff*diff);
+            }
+            result[i] = x[i];
+        }
+        else result[i] = NA_REAL; // non-finite values -> NA
+    }
+
+    // center and scale the column
+    if(count > 1) { /* if count < 2, do nothing */
+        sumsq = sqrt((sumsq - (sum*sum)/(double)count)/(double)(count-1));
+        sum /= (double)count;
+        for(int i=0; i<n; i++) {
+            if(isfinite(x[i])) result[i] = (x[i] - sum - first)/(sumsq);
         }
     }
 
