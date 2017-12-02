@@ -1,4 +1,16 @@
-# align the rows of two matrices
+#' Align the rows of two matrices
+#'
+#' Align the rows of two matrices using their row names, omitting rows that are not present in both.
+#'
+#' @param x A matrix
+#' @param y Another matrix
+#'
+#' @return A list with the input `x` and `y` matrices, with the rows
+#'     aligned using their names. Rows not in both matrices are
+#'     omitted.
+#'
+#' @seealso [align_matrix_cols()]
+#' @export
 align_matrix_rows <-
     function(x, y)
 {
@@ -17,7 +29,19 @@ align_matrix_rows <-
     list(x=x[common,,drop=FALSE], y=y[common,,drop=FALSE])
 }
 
-# align the columns of two matrices
+#' Align the columns of two matrices
+#'
+#' Align the columns of two matrices using their column names, omitting columns that are not present in both.
+#'
+#' @param x A matrix
+#' @param y Another matrix
+#'
+#' @return A list with the input `x` and `y` matrices, with the columns
+#'     aligned using their names. Columns not in both matrices are
+#'     omitted.
+#'
+#' @seealso [align_matrix_rows()]
+#' @export
 align_matrix_cols <-
     function(x, y)
 {
