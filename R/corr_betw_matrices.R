@@ -48,7 +48,13 @@ corr_betw_matrices <-
     if(!is.matrix(x)) x <- as.matrix(x)
     if(!is.matrix(y)) y <- as.matrix(y)
 
-    if(nrow(x) != nrow(y)) stop("nrow(x) != nrow(y) [", nrow(x), " != ", nrow(y), "]")
+    # make sure rows are aligned
+    aligned <- align_matrix_rows(x, y)
+    x <- aligned$x
+    y <- aligned$y
+
+    if(nrow(x) != nrow(y))
+        stop("nrow(x) != nrow(y) [", nrow(x), " != ", nrow(y), "]")
 
     if(is.null(colnames(x))) colnames(x) <- paste("V", 1:ncol(x), sep="")
     if(is.null(colnames(y))) colnames(y) <- paste("V", 1:ncol(y), sep="")

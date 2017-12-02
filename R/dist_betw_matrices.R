@@ -28,6 +28,11 @@ dist_betw_matrices <-
     if(!is.matrix(x)) x <- as.matrix(x)
     if(!is.matrix(y)) y <- as.matrix(y)
 
+    # make sure columns are aligned
+    aligned <- align_matrix_cols(x, y)
+    x <- aligned$x
+    y <- aligned$y
+
     if(ncol(x) != ncol(y))
         stop("x and y should have the same number of columns")
 
