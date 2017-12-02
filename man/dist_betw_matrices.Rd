@@ -2,7 +2,7 @@
 % Please edit documentation in R/dist_betw_matrices.R
 \name{dist_betw_matrices}
 \alias{dist_betw_matrices}
-\title{Distance between columns of two matrices}
+\title{Distance between rows of two matrices}
 \usage{
 dist_betw_matrices(x, y, distance = c("rmsd", "mad"), cores = 1)
 }
@@ -26,7 +26,7 @@ is a \code{n} by \code{m} matrix whose (i,j)th element is the distance
 between the ith column of \code{x} and the jth column of \code{y}.
 }
 \description{
-Calculate the distances between the columns of one matrix and the columns of a second matrix.
+Calculate the distances between the rows of one matrix and the rows of a second matrix.
 }
 \seealso{
 \code{\link[=corr_betw_matrices]{corr_betw_matrices()}}

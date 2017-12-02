@@ -1,6 +1,6 @@
-#' Distance between columns of two matrices
+#' Distance between rows of two matrices
 #'
-#' Calculate the distances between the columns of one matrix and the columns of a second matrix.
+#' Calculate the distances between the rows of one matrix and the rows of a second matrix.
 #'
 #' @md
 #'
