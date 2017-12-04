@@ -1,6 +1,8 @@
 #' Get smallest distance for each individual
 #'
-#' For each individual represented in a distance matrix, find the smallest entry (with NAs for individuals present in only the rows or only the columns).
+#' For each individual represented in a distance matrix, find the
+#' smallest entry (with NAs for individuals present in only the rows
+#' or only the columns).
 #'
 #' @md
 #'
@@ -8,8 +10,10 @@
 #' @param dimension Whether to get the minimum by row or by column
 #' @param get_min If TRUE, get the minimum; if FALSE, get the maximum
 #'
-#' @return A vector with **all** distinct individuals, with the minimum (or maximum) value by row or column.
-#' We include all individuals so that the results are aligned with the results of [get_self()].
+#' @return A vector with **all** distinct individuals, with the
+#' minimum (or maximum) value by row or column. We include all
+#' individuals so that the results are aligned with the results of
+#' [get_self()].
 #'
 #' @seealso [get_self()], [get_2ndbest()], [which_best()]
 #'

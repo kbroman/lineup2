@@ -26,7 +26,8 @@ is an \code{m} by \code{n} matrix whose (i,j)th element is the distance
 between the ith row of \code{x} and the jth row of \code{y}.
 }
 \description{
-Calculate the distances between the rows of one matrix and the rows of a second matrix.
+Calculate the distances between the rows of one matrix and the rows
+of a second matrix.
 }
 \seealso{
 \code{\link[=corr_betw_matrices]{corr_betw_matrices()}}, \code{\link[=dist_betw_arrays]{dist_betw_arrays()}}

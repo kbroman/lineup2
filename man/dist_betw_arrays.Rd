@@ -21,12 +21,14 @@ Alternatively, this can be links to a set of cluster sockets, as
 produced by \code{\link[parallel:makeCluster]{parallel::makeCluster()}}.}
 }
 \value{
-If \code{x} and \code{y} have \code{m} and \code{n} rows, respectively,
-the result is an \code{m} by \code{n} matrix whose (i,j)th element is the distance
-between the ith column of \code{x} and the jth column of \code{y}.
+If \code{x} and \code{y} have \code{m} and \code{n} rows, respectively, the
+result is an \code{m} by \code{n} matrix whose (i,j)th element is the
+distance between the ith column of \code{x} and the jth column of
+\code{y}.
 }
 \description{
-Calculate the distances between the rows of two multi-dimensional arrays.
+Calculate the distances between the rows of two multi-dimensional
+arrays.
 }
 \details{
 The two arrays need to have the same dimensions, except for the

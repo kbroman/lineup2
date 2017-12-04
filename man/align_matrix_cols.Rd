@@ -12,12 +12,13 @@ align_matrix_cols(x, y)
 \item{y}{Another matrix}
 }
 \value{
-A list with the input `x` and `y` matrices, with the columns
-    aligned using their names. Columns not in both matrices are
-    omitted.
+A list with the input `x` and `y` matrices, with the
+columns aligned using their names. Columns not in both matrices
+are omitted.
 }
 \description{
-Align the columns of two matrices using their column names, omitting columns that are not present in both.
+Align the columns of two matrices using their column names,
+omitting columns that are not present in both.
 }
 \seealso{
 [align_matrix_rows()]

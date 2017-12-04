@@ -1,7 +1,8 @@
 #' Determine which individual has 2nd-smallest distance to each individual
 #'
-#' For each individual represented in a distance matrix, find the individual giving the
-#' 2nd-smallest entry (with NAs for individuals present in only the rows or only the columns).
+#' For each individual represented in a distance matrix, find the
+#' individual giving the 2nd-smallest entry (with NAs for individuals
+#' present in only the rows or only the columns).
 #'
 #' @md
 #'
@@ -9,10 +10,11 @@
 #' @param dimension Whether to get the 2nd-best by row or by column
 #' @param get_min If TRUE, get the 2nd-minimum; if FALSE, get the 2nd-maximum
 #'
-#' @return A vector with **all** distinct individuals, with the character
-#' string labels for the individuals giving the 2nd-smallest (or
-#' largest) value by row or column. We include all individuals so that
-#' the results are aligned with the results of [get_self()].
+#' @return A vector with **all** distinct individuals, with the
+#' character string labels for the individuals giving the
+#' 2nd-smallest (or largest) value by row or column. We include
+#' all individuals so that the results are aligned with the
+#' results of [get_self()].
 #'
 #' @seealso [get_2ndbest()], [get_self()], [get_best()], [which_best()]
 #'

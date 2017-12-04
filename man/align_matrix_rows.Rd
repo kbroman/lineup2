@@ -13,11 +13,12 @@ align_matrix_rows(x, y)
 }
 \value{
 A list with the input `x` and `y` matrices, with the rows
-    aligned using their names. Rows not in both matrices are
-    omitted.
+aligned using their names. Rows not in both matrices are
+omitted.
 }
 \description{
-Align the rows of two matrices using their row names, omitting rows that are not present in both.
+Align the rows of two matrices using their row names, omitting rows
+that are not present in both.
 }
 \seealso{
 [align_matrix_cols()]

@@ -1,6 +1,7 @@
 #' Distance between rows of two arrays
 #'
-#' Calculate the distances between the rows of two multi-dimensional arrays.
+#' Calculate the distances between the rows of two multi-dimensional
+#' arrays.
 #'
 #' @md
 #'
@@ -20,9 +21,10 @@
 #' all but the leading dimension, and then they're sent to
 #' [dist_betw_matrices()].
 #'
-#' @return If `x` and `y` have `m` and `n` rows, respectively,
-#'     the result is an `m` by `n` matrix whose (i,j)th element is the distance
-#'     between the ith column of `x` and the jth column of `y`.
+#' @return If `x` and `y` have `m` and `n` rows, respectively, the
+#' result is an `m` by `n` matrix whose (i,j)th element is the
+#' distance between the ith column of `x` and the jth column of
+#' `y`.
 #'
 #' @seealso [dist_betw_matrices()], [corr_betw_matrices()]
 #' @export

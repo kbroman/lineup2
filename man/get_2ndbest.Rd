@@ -14,11 +14,15 @@ get_2ndbest(d, dimension = c("row", "column"), get_min = TRUE)
 \item{get_min}{If TRUE, get the 2nd-minimum; if FALSE, get the 2nd-maximum}
 }
 \value{
-A vector with \strong{all} distinct individuals, with the 2nd-smallest (or largest) value by row or column.
-We include all individuals so that the results are aligned with the results of \code{\link[=get_self]{get_self()}}.
+A vector with \strong{all} distinct individuals, with the
+2nd-smallest (or largest) value by row or column. We include
+all individuals so that the results are aligned with the
+results of \code{\link[=get_self]{get_self()}}.
 }
 \description{
-For each individual represented in a distance matrix, find the 2nd-smallest entry (with NAs for individuals present in only the rows or only the columns).
+For each individual represented in a distance matrix, find the
+2nd-smallest entry (with NAs for individuals present in only the
+rows or only the columns).
 }
 \seealso{
 \code{\link[=get_self]{get_self()}}, \code{\link[=get_best]{get_best()}}, \code{\link[=which_2ndbest]{which_2ndbest()}}

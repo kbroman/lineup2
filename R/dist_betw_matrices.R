@@ -1,6 +1,7 @@
 #' Distance between rows of two matrices
 #'
-#' Calculate the distances between the rows of one matrix and the rows of a second matrix.
+#' Calculate the distances between the rows of one matrix and the rows
+#' of a second matrix.
 #'
 #' @md
 #'
@@ -15,8 +16,8 @@
 #' produced by [parallel::makeCluster()].
 #'
 #' @return If `x` is `m` by `p` and `y` is `n` by `p`, then the result
-#'     is an `m` by `n` matrix whose (i,j)th element is the distance
-#'     between the ith row of `x` and the jth row of `y`.
+#' is an `m` by `n` matrix whose (i,j)th element is the distance
+#' between the ith row of `x` and the jth row of `y`.
 #'
 #' @seealso [corr_betw_matrices()], [dist_betw_arrays()]
 #' @export

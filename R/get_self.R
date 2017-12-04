@@ -1,12 +1,15 @@
 #' Get self-self distance
 #'
-#' For each individual represented in a distance matrix, pull the self-self entry (with NAs for individuals present in only the rows or only the columns).
+#' For each individual represented in a distance matrix, pull the
+#' self-self entry (with NAs for individuals present in only the rows
+#' or only the columns).
 #'
 #' @md
 #'
 #' @param d A distance matrix
 #'
-#' @return A vector with all distinct individuals, with the self-self values
+#' @return A vector with all distinct individuals, with the self-self
+#' values
 #'
 #' @seealso [get_best()], [get_2ndbest()]
 #'
