@@ -11,7 +11,7 @@
 #' @return A vector with **all** distinct individuals, with the 2nd-smallest (or largest) value by row or column.
 #' We include all individuals so that the results are aligned with the results of [get_self()].
 #'
-#' @seealso [get_self()], [get_best()]
+#' @seealso [get_self()], [get_best()], [which_2ndbest()]
 #'
 #' @importFrom stats setNames
 #' @export
