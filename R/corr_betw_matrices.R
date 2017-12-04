@@ -39,7 +39,7 @@
 #' `ncol(y)`, with all correlations between columns of `x` and
 #' columns of `y`.
 #'
-#' @seealso [dist_betw_matrices()]
+#' @seealso [dist_betw_matrices()], [dist_betw_arrays()]
 #' @export
 corr_betw_matrices <-
     function(x, y, what=c("paired", "bestright", "bestpairs", "all"),

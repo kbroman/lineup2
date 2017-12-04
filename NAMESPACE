@@ -3,6 +3,7 @@
 export(align_matrix_cols)
 export(align_matrix_rows)
 export(corr_betw_matrices)
+export(dist_betw_arrays)
 export(dist_betw_matrices)
 importFrom(Rcpp,sourceCpp)
 useDynLib(lineup2, .registration=TRUE)

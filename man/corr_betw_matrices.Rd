@@ -53,5 +53,5 @@ using all complete pairs, as in \code{\link[stats:cor]{stats::cor()}} with
 \code{use="pairwise.complete.obs"}.
 }
 \seealso{
-\code{\link[=dist_betw_matrices]{dist_betw_matrices()}}
+\code{\link[=dist_betw_matrices]{dist_betw_matrices()}}, \code{\link[=dist_betw_arrays]{dist_betw_arrays()}}
 }

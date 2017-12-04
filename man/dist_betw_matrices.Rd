@@ -29,5 +29,5 @@ between the ith row of \code{x} and the jth row of \code{y}.
 Calculate the distances between the rows of one matrix and the rows of a second matrix.
 }
 \seealso{
-\code{\link[=corr_betw_matrices]{corr_betw_matrices()}}
+\code{\link[=corr_betw_matrices]{corr_betw_matrices()}}, \code{\link[=dist_betw_arrays]{dist_betw_arrays()}}
 }
