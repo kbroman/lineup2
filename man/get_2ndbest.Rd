@@ -25,5 +25,5 @@ For each individual represented in a distance matrix, find the
 rows or only the columns).
 }
 \seealso{
-\code{\link[=get_self]{get_self()}}, \code{\link[=get_best]{get_best()}}, \code{\link[=which_2ndbest]{which_2ndbest()}}
+\code{\link[=get_self]{get_self()}}, \code{\link[=get_best]{get_best()}}, \code{\link[=which_2ndbest]{which_2ndbest()}}, \code{\link[=get_nonself]{get_nonself()}}
 }

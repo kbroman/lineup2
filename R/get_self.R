@@ -11,7 +11,7 @@
 #' @return A vector with all distinct individuals, with the self-self
 #' values
 #'
-#' @seealso [get_best()], [get_2ndbest()]
+#' @seealso [get_best()], [get_2ndbest()], [get_nonself()]
 #'
 #' @export
 get_self <-

@@ -15,7 +15,7 @@
 #' individuals so that the results are aligned with the results of
 #' [get_self()].
 #'
-#' @seealso [get_self()], [get_2ndbest()], [which_best()]
+#' @seealso [get_self()], [get_2ndbest()], [which_best()], [get_nonself()]
 #'
 #' @importFrom stats setNames
 #' @export

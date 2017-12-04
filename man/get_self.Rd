@@ -19,5 +19,5 @@ self-self entry (with NAs for individuals present in only the rows
 or only the columns).
 }
 \seealso{
-\code{\link[=get_best]{get_best()}}, \code{\link[=get_2ndbest]{get_2ndbest()}}
+\code{\link[=get_best]{get_best()}}, \code{\link[=get_2ndbest]{get_2ndbest()}}, \code{\link[=get_nonself]{get_nonself()}}
 }

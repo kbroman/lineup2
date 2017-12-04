@@ -73,4 +73,9 @@ test_that("get_self(), etc. work", {
     expect_equal(which_2ndbest(d, "col", FALSE),
                  c(A=NA, B=NA, C="E", D="D", E="E", I="C", H="E", F="B", G="D"))
 
+
+    expected <- d
+    for(i in LETTERS[3:5]) expected[i,i] <- NA
+    expect_equal(get_nonself(d), expected)
+
 })

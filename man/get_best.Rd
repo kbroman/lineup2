@@ -25,5 +25,5 @@ smallest entry (with NAs for individuals present in only the rows
 or only the columns).
 }
 \seealso{
-\code{\link[=get_self]{get_self()}}, \code{\link[=get_2ndbest]{get_2ndbest()}}, \code{\link[=which_best]{which_best()}}
+\code{\link[=get_self]{get_self()}}, \code{\link[=get_2ndbest]{get_2ndbest()}}, \code{\link[=which_best]{which_best()}}, \code{\link[=get_nonself]{get_nonself()}}
 }
