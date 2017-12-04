@@ -10,8 +10,11 @@ get_self(d)
 \item{d}{A distance matrix}
 }
 \value{
-A vector with all of distinct individuals, with the self-self distance values.
+A vector with all distinct individuals, with the self-self values
 }
 \description{
-For each individual represented in a distance matrix, find self-self entry (with NAs for individuals present in only the rows or only the columns.
+For each individual represented in a distance matrix, pull the self-self entry (with NAs for individuals present in only the rows or only the columns).
+}
+\seealso{
+\code{\link[=get_best]{get_best()}}
 }
