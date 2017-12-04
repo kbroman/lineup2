@@ -5,7 +5,7 @@
 #' @md
 #'
 #' @param x A numeric matrix.
-#' @param y A second numeric matrix, with the same number of rows as `x`.
+#' @param y A second numeric matrix, with the same number of columns as `x`.
 #' @param distance Indicates whether to use Euclidean distance
 #'     (`"rmsd"` for root mean square difference) or the mean absolute
 #'     difference (`"mad"`).
@@ -14,9 +14,9 @@
 #' Alternatively, this can be links to a set of cluster sockets, as
 #' produced by [parallel::makeCluster()].
 #'
-#' @return If `x` is `p` by `n` and `y` is `p` by `m`, then the result
-#'     is a `n` by `m` matrix whose (i,j)th element is the distance
-#'     between the ith column of `x` and the jth column of `y`.
+#' @return If `x` is `m` by `p` and `y` is `n` by `p`, then the result
+#'     is an `m` by `n` matrix whose (i,j)th element is the distance
+#'     between the ith row of `x` and the jth row of `y`.
 #'
 #' @seealso [corr_betw_matrices()]
 #' @export

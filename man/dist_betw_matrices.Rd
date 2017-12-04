@@ -9,7 +9,7 @@ dist_betw_matrices(x, y, distance = c("rmsd", "mad"), cores = 1)
 \arguments{
 \item{x}{A numeric matrix.}
 
-\item{y}{A second numeric matrix, with the same number of rows as \code{x}.}
+\item{y}{A second numeric matrix, with the same number of columns as \code{x}.}
 
 \item{distance}{Indicates whether to use Euclidean distance
 (\code{"rmsd"} for root mean square difference) or the mean absolute
@@ -21,9 +21,9 @@ Alternatively, this can be links to a set of cluster sockets, as
 produced by \code{\link[parallel:makeCluster]{parallel::makeCluster()}}.}
 }
 \value{
-If \code{x} is \code{p} by \code{n} and \code{y} is \code{p} by \code{m}, then the result
-is a \code{n} by \code{m} matrix whose (i,j)th element is the distance
-between the ith column of \code{x} and the jth column of \code{y}.
+If \code{x} is \code{m} by \code{p} and \code{y} is \code{n} by \code{p}, then the result
+is an \code{m} by \code{n} matrix whose (i,j)th element is the distance
+between the ith row of \code{x} and the jth row of \code{y}.
 }
 \description{
 Calculate the distances between the rows of one matrix and the rows of a second matrix.
