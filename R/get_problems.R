@@ -9,6 +9,7 @@
 #' @param d A distance matrix
 #' @param dimension Whether to determine the best distances within rows or columns
 #' @param get_min If TRUE, get the minimum; if FALSE, get the maximum
+#' @param subset Whether to return just the rows with potential problems, or all of the rows.
 #'
 #' @return A data frame containing individual ID, distance to self,
 #'     best distance and corresponding individual, 2nd best distance
@@ -19,7 +20,7 @@
 #' @export
 get_problems <-
     function(d, dimension=c("row", "column"), get_min=TRUE,
-             return=c("problems", "all"))
+             subset=c("problems", "all"))
 
 {
     dimension <- match.arg(dimension)
@@ -35,8 +36,8 @@ get_problems <-
     if(get_min) result <- result[order(result$best - result$self),,drop=FALSE]
     else result <- result[order(result$self - result$best),,drop=FALSE]
 
-    return <- match.arg(return)
-    if(return=="all") return(result)
+    subset <- match.arg(subset)
+    if(subset=="all") return(result)
 
     if(get_min)
         return(result[is.na(result$self) | is.na(result$best) | result$best < result$self,])

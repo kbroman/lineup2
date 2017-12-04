@@ -5,7 +5,7 @@
 \title{Summarize potential problems in a distance matrix}
 \usage{
 get_problems(d, dimension = c("row", "column"), get_min = TRUE,
-  return = c("problems", "all"))
+  subset = c("problems", "all"))
 }
 \arguments{
 \item{d}{A distance matrix}
@@ -13,6 +13,8 @@ get_problems(d, dimension = c("row", "column"), get_min = TRUE,
 \item{dimension}{Whether to determine the best distances within rows or columns}
 
 \item{get_min}{If TRUE, get the minimum; if FALSE, get the maximum}
+
+\item{subset}{Whether to return just the rows with potential problems, or all of the rows.}
 }
 \value{
 A data frame containing individual ID, distance to self,
