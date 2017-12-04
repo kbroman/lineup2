@@ -8,7 +8,7 @@
 #'
 #' @return A vector with all distinct individuals, with the self-self values
 #'
-#' @seealso [get_best()]
+#' @seealso [get_best()], [get_2ndbest()]
 #'
 #' @export
 get_self <-

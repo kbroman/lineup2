@@ -21,5 +21,5 @@ We include all individuals so that the results are aligned with the results of \
 For each individual represented in a distance matrix, find the smallest entry (with NAs for individuals present in only the rows or only the columns).
 }
 \seealso{
-\code{\link[=get_self]{get_self()}}
+\code{\link[=get_self]{get_self()}}, \code{\link[=get_2ndbest]{get_2ndbest()}}
 }
