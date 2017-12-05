@@ -48,13 +48,17 @@ corr_betw_matrices <-
     if(!is.matrix(x)) x <- as.matrix(x)
     if(!is.matrix(y)) y <- as.matrix(y)
 
-    # make sure rows are aligned
-    aligned <- align_matrix_rows(x, y)
-    x <- aligned$x
-    y <- aligned$y
+    # if different numbers of rows, try to align them
+    if(nrow(x) != nrow(y)) {
+        aligned <- align_matrix_rows(x, y)
+        x <- aligned$x
+        y <- aligned$y
+        if(nrow(x) < 2)
+            stop("In trying to align rows, we omitted all but 1 row")
+    }
 
     if(nrow(x) != nrow(y))
-        stop("nrow(x) != nrow(y) [", nrow(x), " != ", nrow(y), "]")
+        stop("x and y should have the same number of rows")
 
     if(is.null(colnames(x))) colnames(x) <- paste("V", 1:ncol(x), sep="")
     if(is.null(colnames(y))) colnames(y) <- paste("V", 1:ncol(y), sep="")
