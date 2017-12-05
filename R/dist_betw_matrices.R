@@ -10,6 +10,8 @@
 #' @param distance Indicates whether to use Euclidean distance
 #'     (`"rmsd"` for root mean square difference) or the mean absolute
 #'     difference (`"mad"`).
+#' @param align_cols If TRUE, align the columns in the two matrices by
+#' the column names.
 #' @param cores Number of CPU cores to use, for parallel calculations.
 #' (If `0`, use [parallel::detectCores()].)
 #' Alternatively, this can be links to a set of cluster sockets, as
@@ -22,20 +24,21 @@
 #' @seealso [corr_betw_matrices()], [dist_betw_arrays()]
 #' @export
 dist_betw_matrices <-
-    function(x,y, distance=c("rmsd", "mad"), cores=1)
+    function(x,y, distance=c("rmsd", "mad"), align_cols=TRUE, cores=1)
 {
     distance <- match.arg(distance)
 
     if(!is.matrix(x)) x <- as.matrix(x)
     if(!is.matrix(y)) y <- as.matrix(y)
 
-    # if different numbers of columns, try to align them
-    if(ncol(x) != ncol(y)) {
+    # align columns by their names
+    if(align_cols) {
         aligned <- align_matrix_cols(x, y)
         x <- aligned$x
         y <- aligned$y
-        if(ncol(x) < 2)
+        if(ncol(x) < 2) {
             stop("In trying to align columns, we omitted all but 1 column")
+        }
     }
 
     if(ncol(x) != ncol(y))

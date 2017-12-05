@@ -34,7 +34,7 @@ dist_betw_arrays <-
     distance <- match.arg(distance)
 
     if(is.matrix(x) && is.matrix(y)) # matrices ... use dist_betw_matrices()
-        return(dist_betw_matrices(x,y,distance=distance, cores=cores))
+        return(dist_betw_matrices(x,y, distance=distance, align_cols=FALSE, cores=cores))
 
     if(!is.array(x) || !is.array(y))
         stop("x and y must both be arrays")
@@ -54,5 +54,5 @@ dist_betw_arrays <-
     rownames(x) <- rnx
     rownames(y) <- rny
 
-    dist_betw_matrices(x, y, distance=distance, cores=cores)
+    dist_betw_matrices(x, y, distance=distance, align_cols=FALSE, cores=cores)
 }

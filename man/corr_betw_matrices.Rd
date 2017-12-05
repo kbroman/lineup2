@@ -5,7 +5,7 @@
 \title{Calculate correlations between columns of two matrices}
 \usage{
 corr_betw_matrices(x, y, what = c("paired", "bestright", "bestpairs", "all"),
-  corr_threshold = 0.9, cores = 1)
+  corr_threshold = 0.9, align_rows = TRUE, cores = 1)
 }
 \arguments{
 \item{x}{A numeric matrix.}
@@ -16,6 +16,9 @@ corr_betw_matrices(x, y, what = c("paired", "bestright", "bestpairs", "all"),
 value, below.}
 
 \item{corr_threshold}{Threshold on correlations if \code{what="bestpairs"}.}
+
+\item{align_rows}{If TRUE, align the rows in the two matrices by
+the row names.}
 
 \item{cores}{Number of CPU cores to use, for parallel calculations.
 (If \code{0}, use \code{\link[parallel:detectCores]{parallel::detectCores()}}.)

@@ -4,7 +4,8 @@
 \alias{dist_betw_matrices}
 \title{Distance between rows of two matrices}
 \usage{
-dist_betw_matrices(x, y, distance = c("rmsd", "mad"), cores = 1)
+dist_betw_matrices(x, y, distance = c("rmsd", "mad"), align_cols = TRUE,
+  cores = 1)
 }
 \arguments{
 \item{x}{A numeric matrix.}
@@ -14,6 +15,9 @@ dist_betw_matrices(x, y, distance = c("rmsd", "mad"), cores = 1)
 \item{distance}{Indicates whether to use Euclidean distance
 (\code{"rmsd"} for root mean square difference) or the mean absolute
 difference (\code{"mad"}).}
+
+\item{align_cols}{If TRUE, align the columns in the two matrices by
+the column names.}
 
 \item{cores}{Number of CPU cores to use, for parallel calculations.
 (If \code{0}, use \code{\link[parallel:detectCores]{parallel::detectCores()}}.)

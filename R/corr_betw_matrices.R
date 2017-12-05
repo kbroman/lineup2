@@ -14,6 +14,8 @@
 #' @param what Indicates which correlations to calculate and return.  See
 #' value, below.
 #' @param corr_threshold Threshold on correlations if `what="bestpairs"`.
+#' @param align_rows If TRUE, align the rows in the two matrices by
+#' the row names.
 #' @param cores Number of CPU cores to use, for parallel calculations.
 #' (If `0`, use [parallel::detectCores()].)
 #' Alternatively, this can be links to a set of cluster sockets, as
@@ -43,18 +45,19 @@
 #' @export
 corr_betw_matrices <-
     function(x, y, what=c("paired", "bestright", "bestpairs", "all"),
-             corr_threshold=0.9, cores=1)
+             corr_threshold=0.9, align_rows=TRUE, cores=1)
 {
     if(!is.matrix(x)) x <- as.matrix(x)
     if(!is.matrix(y)) y <- as.matrix(y)
 
-    # if different numbers of rows, try to align them
-    if(nrow(x) != nrow(y)) {
+    # align rows by their names
+    if(align_rows) {
         aligned <- align_matrix_rows(x, y)
         x <- aligned$x
         y <- aligned$y
-        if(nrow(x) < 2)
+        if(nrow(x) < 2) {
             stop("In trying to align rows, we omitted all but 1 row")
+        }
     }
 
     if(nrow(x) != nrow(y))
