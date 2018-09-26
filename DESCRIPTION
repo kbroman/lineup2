@@ -6,8 +6,8 @@ Description: Tools for detecting and correcting sample mix-ups between two sets
     of measurements, such as between gene expression data on two
     tissues. This is a revised version of the lineup package, to be
     more general.
-Author: Karl W Broman <kbroman@biostat.wisc.edu>
-Maintainer: Karl W Broman <kbroman@biostat.wisc.edu>
+Author: Karl W Broman <broman@wisc.edu>
+Maintainer: Karl W Broman <broman@wisc.edu>
 Depends:
     R (>= 3.1.0)
 Imports:
