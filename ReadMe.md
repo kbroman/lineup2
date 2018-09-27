@@ -11,7 +11,7 @@
 correcting sample mix-ups between two sets of measurements, such as
 between gene expression data on two tissues. It's a revised
 version of [lineup](https://github.com/kbroman/lineup), to be more
-general and not so closely tied to the [R/qtl](https://rqtl.org)
+general and not so closely tied to the [R/qtl](http://rqtl.org)
 package.
 
 
