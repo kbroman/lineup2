@@ -4,8 +4,8 @@
 \alias{dist_betw_matrices}
 \title{Distance between rows of two matrices}
 \usage{
-dist_betw_matrices(x, y, distance = c("rmsd", "mad"), align_cols = TRUE,
-  cores = 1)
+dist_betw_matrices(x, y, distance = c("rmsd", "mad"),
+  align_cols = TRUE, cores = 1)
 }
 \arguments{
 \item{x}{A numeric matrix.}

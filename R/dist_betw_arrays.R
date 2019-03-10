@@ -3,8 +3,6 @@
 #' Calculate the distances between the rows of two multi-dimensional
 #' arrays.
 #'
-#' @md
-#'
 #' @param x A numeric array.
 #' @param y A second numeric array, with the same dimensions as `x`.
 #' @param distance Indicates whether to use Euclidean distance

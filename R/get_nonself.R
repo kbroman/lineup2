@@ -3,8 +3,6 @@
 #' Return the distance matrix with all self-self distances replaced
 #' with NAs (and so just containing the self-self distances).
 #'
-#' @md
-#'
 #' @param d A distance matrix
 #'
 #' @return The input distance matrix with all self-self distances

@@ -12,7 +12,7 @@ align_matrix_rows(x, y)
 \item{y}{Another matrix}
 }
 \value{
-A list with the input `x` and `y` matrices, with the rows
+A list with the input \code{x} and \code{y} matrices, with the rows
 aligned using their names. Rows not in both matrices are
 omitted.
 }
@@ -21,5 +21,5 @@ Align the rows of two matrices using their row names, omitting rows
 that are not present in both.
 }
 \seealso{
-[align_matrix_cols()]
+\code{\link[=align_matrix_cols]{align_matrix_cols()}}
 }

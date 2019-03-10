@@ -2,8 +2,6 @@
 #'
 #' Plot histograms of self-self and self-nonself distances
 #'
-#' @md
-#'
 #' @param d A distance matrix
 #' @param rug If TRUE, use [graphics::rug()] to plot tick marks at the
 #' observed values, below the histograms.

@@ -4,8 +4,6 @@
 #' self-self entry (with NAs for individuals present in only the rows
 #' or only the columns).
 #'
-#' @md
-#'
 #' @param d A distance matrix
 #'
 #' @return A vector with all distinct individuals, with the self-self

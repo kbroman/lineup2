@@ -4,8 +4,6 @@
 #' smallest entry (with NAs for individuals present in only the rows
 #' or only the columns).
 #'
-#' @md
-#'
 #' @param d A distance matrix
 #' @param dimension Whether to get the minimum by row or by column
 #' @param get_min If TRUE, get the minimum; if FALSE, get the maximum

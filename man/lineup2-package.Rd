@@ -7,9 +7,9 @@
 \title{lineup2: Lining Up Two Sets of Measurements}
 \description{
 Tools for detecting and correcting sample mix-ups between two sets
-of measurements, such as between gene expression data on two
-tissues. This is a revised version of the lineup package, to be
-more general.
+    of measurements, such as between gene expression data on two
+    tissues. This is a revised version of the lineup package, to be
+    more general.
 }
 \seealso{
 Useful links:

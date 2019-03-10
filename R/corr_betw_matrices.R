@@ -7,8 +7,6 @@
 #' using all complete pairs, as in [stats::cor()] with
 #' `use="pairwise.complete.obs"`.
 #'
-#' @md
-#'
 #' @param x A numeric matrix.
 #' @param y A numeric matrix with the same number of rows as `x`.
 #' @param what Indicates which correlations to calculate and return.  See

@@ -3,8 +3,6 @@
 #' Calculate the distances between the rows of one matrix and the rows
 #' of a second matrix.
 #'
-#' @md
-#'
 #' @param x A numeric matrix.
 #' @param y A second numeric matrix, with the same number of columns as `x`.
 #' @param distance Indicates whether to use Euclidean distance

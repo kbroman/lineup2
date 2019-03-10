@@ -4,8 +4,6 @@
 #' self-self, best, and 2nd best distances, and summarize the results
 #' in a data frame.
 #'
-#' @md
-#'
 #' @param d A distance matrix
 #' @param dimension Whether to determine the best distances within rows or columns
 #' @param get_min If TRUE, get the minimum; if FALSE, get the maximum
