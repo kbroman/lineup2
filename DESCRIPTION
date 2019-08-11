@@ -6,7 +6,9 @@ Description: Tools for detecting and correcting sample mix-ups between two sets
     of measurements, such as between gene expression data on two
     tissues. This is a revised version of the lineup package, to be
     more general.
-Author: Karl W Broman <broman@wisc.edu>
+Authors@R: c(person("Karl W", "Broman", role=c("aut", "cre"),
+             email="broman@wisc.edu", comment=c(ORCID = "0000-0002-4914-6671")))
+Author: Karl W Broman [aut, cre] (<https://orcid.org/0000-0002-4914-6671>)
 Maintainer: Karl W Broman <broman@wisc.edu>
 Depends:
     R (>= 3.1.0)
