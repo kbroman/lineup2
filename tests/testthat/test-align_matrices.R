@@ -16,9 +16,9 @@ test_that("align_matrix_rows and align_matrix_cols work", {
     colnames(x) <- sample(LETTERS, p)
     colnames(y) <- sample(LETTERS, q)
 
-    expect_equal(align_matrix_rows(x,y), list(x=x[c(1,6),], y=y[c(6,7),]))
+    expect_equal(align_matrix_rows(x,y), list(x=x[c(2,3,7,8),], y=y[c(4,7,5,9),]))
 
-    expect_equal(align_matrix_cols(x,y), list(x=x[,c(7,8)], y=y[,c(1,7)]))
+    expect_equal(align_matrix_cols(x,y), list(x=x[,c(7,8)], y=y[,c(1,5)]))
 
 
 })
