@@ -1,3 +1,9 @@
+## lineup2 0.1-6 (2019-12-08)
+
+- Fix use of `class()` in `is_cluster()`. Instead of
+  `"blah" %in% class(object)`, use `inherits(object, "blah")`.
+
+
 ## lineup2 0.1-5 (2019-08-12)
 
 - Revise tests due to change in R's sample() in R 3.6.0.
