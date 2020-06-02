@@ -4,8 +4,12 @@
 \alias{get_problems}
 \title{Summarize potential problems in a distance matrix}
 \usage{
-get_problems(d, dimension = c("row", "column"), get_min = TRUE,
-  subset = c("problems", "all"))
+get_problems(
+  d,
+  dimension = c("row", "column"),
+  get_min = TRUE,
+  subset = c("problems", "all")
+)
 }
 \arguments{
 \item{d}{A distance matrix}

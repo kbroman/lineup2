@@ -4,8 +4,14 @@
 \alias{corr_betw_matrices}
 \title{Calculate correlations between columns of two matrices}
 \usage{
-corr_betw_matrices(x, y, what = c("paired", "bestright", "bestpairs",
-  "all"), corr_threshold = 0.9, align_rows = TRUE, cores = 1)
+corr_betw_matrices(
+  x,
+  y,
+  what = c("paired", "bestright", "bestpairs", "all"),
+  corr_threshold = 0.9,
+  align_rows = TRUE,
+  cores = 1
+)
 }
 \arguments{
 \item{x}{A numeric matrix.}
