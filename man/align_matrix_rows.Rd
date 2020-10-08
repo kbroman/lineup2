@@ -20,6 +20,13 @@ omitted.
 Align the rows of two matrices using their row names, omitting rows
 that are not present in both.
 }
+\examples{
+y <- x <- matrix(nrow=3, ncol=2)
+rownames(x) <- c("A", "B", "C")
+rownames(y) <- c("B", "A", "D")
+align_matrix_rows(x,y)
+
+}
 \seealso{
 \code{\link[=align_matrix_cols]{align_matrix_cols()}}
 }

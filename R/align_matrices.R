@@ -10,6 +10,12 @@
 #' aligned using their names. Rows not in both matrices are
 #' omitted.
 #'
+#' @examples
+#' y <- x <- matrix(nrow=3, ncol=2)
+#' rownames(x) <- c("A", "B", "C")
+#' rownames(y) <- c("B", "A", "D")
+#' align_matrix_rows(x,y)
+#'
 #' @seealso [align_matrix_cols()]
 #' @export
 align_matrix_rows <-
@@ -41,6 +47,12 @@ align_matrix_rows <-
 #' @return A list with the input `x` and `y` matrices, with the
 #' columns aligned using their names. Columns not in both matrices
 #' are omitted.
+#'
+#' @examples
+#' y <- x <- matrix(nrow=2, ncol=3)
+#' colnames(x) <- c("A", "B", "C")
+#' colnames(y) <- c("B", "A", "D")
+#' align_matrix_cols(x,y)
 #'
 #' @seealso [align_matrix_rows()]
 #' @export
