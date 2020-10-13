@@ -54,11 +54,10 @@
 #' result_pair <- corr_betw_matrices(x, y, "paired")
 #'
 #' # for each column in x, find most correlated column in y
+#' # (max in each row of result_all)
 #' result_bestright <- corr_betw_matrices(x, y, "bestright")
-#' (max in each row of result_all)
 #'
-#' # correlations between pairs of columns (one in x and one in y)
-#' # that exceed a threshold
+#' # correlations in result_all that exceed a threshold
 #' result_bestpairs <- corr_betw_matrices(x, y, "bestpairs", corr_threshold=0.15)
 #'
 #' @seealso [dist_betw_matrices()], [dist_betw_arrays()]
