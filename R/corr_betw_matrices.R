@@ -39,6 +39,28 @@
 #' `ncol(y)`, with all correlations between columns of `x` and
 #' columns of `y`.
 #'
+#' @examples
+#' set.seed(20201013)
+#' x <- matrix(rnorm(500), ncol=5)
+#' colnames(x) <- paste0("X", 1:5)
+#' y <- matrix(rnorm(500), ncol=5)
+#' colnames(y) <- paste0("Y", 1:5)
+#'
+#' # correlations for each column in x with each in y
+#' result_all <- corr_betw_matrices(x, y, "all")
+#'
+#' # correlations for corresponding column pairs
+#' # (diagonal of result_all)
+#' result_pair <- corr_betw_matrices(x, y, "paired")
+#'
+#' # for each column in x, find most correlated column in y
+#' result_bestright <- corr_betw_matrices(x, y, "bestright")
+#' (max in each row of result_all)
+#'
+#' # correlations between pairs of columns (one in x and one in y)
+#' # that exceed a threshold
+#' result_bestpairs <- corr_betw_matrices(x, y, "bestpairs", corr_threshold=0.15)
+#'
 #' @seealso [dist_betw_matrices()], [dist_betw_arrays()]
 #' @export
 corr_betw_matrices <-

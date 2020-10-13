@@ -1,3 +1,8 @@
+## lineup2 0.1-8 (2020-10-13)
+
+- Add some more examples in the help files.
+
+
 ## lineup2 0.1-7 (2020-10-08)
 
 - Fix use of `class()` in `is_cluster()`. Instead of
