@@ -4,7 +4,7 @@
 \alias{hist_self_nonself}
 \title{Plot histograms of self-self and self-nonself distances}
 \usage{
-hist_self_nonself(d, breaks = NULL, rug = TRUE)
+hist_self_nonself(d, breaks = NULL, rug = TRUE, xlabel = "distance")
 }
 \arguments{
 \item{d}{A distance matrix}
@@ -13,6 +13,8 @@ hist_self_nonself(d, breaks = NULL, rug = TRUE)
 
 \item{rug}{If TRUE, use \code{\link[graphics:rug]{graphics::rug()}} to plot tick marks at the
 observed values, below the histograms.}
+
+\item{xlabel}{Label on x-axes (e.g., "similarity" vs "distance")}
 }
 \value{
 None.

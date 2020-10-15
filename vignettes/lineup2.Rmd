@@ -63,7 +63,8 @@ aligned <- align_matrix_rows(gastroc, islet)
 The original matrices have `r nrow(gastroc)` and `r nrow(islet)` rows.
 The output of `align_matrix_rows()` is a list with two matrices, where
 the original matrices are subsetted to their common rows, based on
-their rownames. Here, each matrix in the output has `r nrow(aligned[[1]])`
+their row names. The rows are also placed in the same order.
+Here, each matrix in the output has `r nrow(aligned[[1]])`
 rows, which is the number of samples in common between the two
 tissues.
 
@@ -127,11 +128,11 @@ corr_betw_samples <- corr_betw_matrices(t(gastroc[,selected_genes]),
 ```
 
 The output is a `r nrow(gastroc)` &times; `r nrow(islet)` matrix, with
-the (_i_,_j_)th element being the correlation between the _i_th row of
-`gastroc` and the _j_th row of `islet`.
+the (i,j)th element being the correlation between the ith row of
+`gastroc` and the jth row of `islet`.
 
-Note that the relate function `dist_betw_matrices()` can be used to
-calculate the Euclidean or mean absolute distance between samples.
+Note that there is a related function `dist_betw_matrices()`
+to calculate the Euclidean or mean absolute distance between samples.
 There is also `dist_betw_arrays()` for arrays with >2 dimensions.
 Unlike `corr_betw_matrices()`, these functions look for distance
 between rows not columns.
@@ -139,9 +140,16 @@ between rows not columns.
 
 ### Summarize correlations/distances
 
+The first thing to do with the resulting similarity matrix is to plot
+the values. The function `hist_self_nonself()` plots histograms of the
+self-self similarities and the self-nonself similarities.
+
 ```{r hist_self_nonself, fig.height=6}
-hist_self_nonself(corr_betw_samples)
+hist_self_nonself(corr_betw_samples, xlabel="correlation")
 ```
+
+The self-self distances are
+
 
 ```{r self_values}
 self <- get_self(corr_betw_samples)
