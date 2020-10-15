@@ -142,14 +142,30 @@ between rows not columns.
 
 The first thing to do with the resulting similarity matrix is to plot
 the values. The function `hist_self_nonself()` plots histograms of the
-self-self similarities and the self-nonself similarities.
+self-self correlations and the self-nonself correlations.
 
 ```{r hist_self_nonself, fig.height=6}
 hist_self_nonself(corr_betw_samples, xlabel="correlation")
 ```
 
-The self-self distances are
+The self-self correlations are mostly > 0.7, while the
+self-nonself correlations are mostly < 0.7. The bimodal distribution
+of the self-nonself correlations is due to sex differences. Same-sex
+mice generally show positive correlations, while opposite-sex mice
+generally show negative correlations.
 
+
+
+
+### Identify sample mix-ups
+
+There are a few self-self correlations that are small and even
+negative. These are the sample mix-ups we are looking for. To identify
+the problem samples, we want to pull out the individual values,
+and identify the maximum values in each row and column.
+
+You can pull out the self-self correlations with the function `get_self()`.
+These are the cases where the row and column names match.
 
 ```{r self_values}
 self <- get_self(corr_betw_samples)
@@ -157,10 +173,22 @@ self <- get_self(corr_betw_samples)
 
 There is also a function `get_nonself()` for pulling out the non-self values.
 
+Note that there are `r sum(is.na(self))` missing values, where a
+sample is present in only one of the two tissues:
+
+```{r missing_self}
+self[is.na(self)]
+```
+
+Here are the smallest eight values. As we will see, the first five of
+these are the real problems.
+
+```{r self_sorted}
+round(sort(self)[1:8],2)
+```
 
 
 
-### Identify sample mix-ups
 
 ```{r best_by_row_and_col}
 best_byrow <- get_best(corr_betw_samples, get_min=FALSE, dimension="row")
