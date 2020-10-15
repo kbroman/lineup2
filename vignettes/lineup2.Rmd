@@ -283,8 +283,6 @@ secbest_bycol <- get_2ndbest(corr_betw_samples, get_min=FALSE, dimension="column
 We then can plot the second-best samples versus the best samples, and
 we will point to the problem samples. The four problem samples in
 gastroc, and the five problem samples in islet, are highlighted in red.
-Values away from the diagonal have good support for the "best" sample
-being the correct one.
 
 ```{r sec_best_vs_best}
 par(mfrow=c(1,2), mar=c(4.1, 4.1, 1.6, 0.6), las=1)
@@ -303,6 +301,8 @@ points(best_bycol[label], secbest_bycol[label], pch=16, col=red)
 abline(0,1, lty=2)
 ```
 
+Values away from the diagonal have good support for the "best" sample
+being the correct one. This includes all of the problem samples (in red).
 
 
 
