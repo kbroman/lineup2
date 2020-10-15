@@ -8,7 +8,7 @@ vignette: >
 ---
 
 ```{r knitr_options, include=FALSE}
-knitr::opts_chunk$set(fig.width=7, fig.height=4.5)
+knitr::opts_chunk$set(fig.width=7, fig.height=4.5, dev="svg")
 ```
 
 
@@ -144,7 +144,7 @@ The first thing to do with the resulting similarity matrix is to plot
 the values. The function `hist_self_nonself()` plots histograms of the
 self-self correlations and the self-nonself correlations.
 
-```{r hist_self_nonself, fig.height=6}
+```{r hist_self_nonself, fig.height=6, dev="png"}
 hist_self_nonself(corr_betw_samples, xlabel="correlation")
 ```
 
@@ -188,23 +188,33 @@ round(sort(self)[1:8],2)
 ```
 
 
-
+The samples with low self-self correlation are likely mix-ups. To
+identify the correct labels, we can look for the largest correlation
+in each row and column of the similarity matrix. To do this, we use
+the function `get_best()`. We use the argument `get_min=FALSE` since
+we are looking for the maximum here, and we use the argument
+`dimension` to control whether to look within each row (gastroc) or
+within each column (islet).
 
 ```{r best_by_row_and_col}
 best_byrow <- get_best(corr_betw_samples, get_min=FALSE, dimension="row")
 best_bycol <- get_best(corr_betw_samples, get_min=FALSE, dimension="column")
 ```
 
+We can plot the self-self correlations against the maximum
+correlations by row and column. (There is a bit of effort to get
+labels on the points.)
+
 ```{r plot_self_v_best}
 par(mfrow=c(1,2), mar=c(4.1, 4.1, 1.6, 0.6), las=1)
-plot(self, best_byrow, xlab="Self-self distance", ylab="Distance to best islet",
-     main="Gastroc samples", pch=16)
+plot(self, best_byrow, xlab="Self-self correlation", ylab="Best islet correlation",
+     main="Gastroc samples", pch=16, xlim=c(-0.3, 1.0), ylim=c(0.6, 1.0))
 label <- best_byrow-self > 0.2
 text(self[label]+0.03, best_byrow[label], names(self)[label],
      adj=c(0,0.5), cex=0.8)
 
-plot(self, best_bycol, xlab="Self-self distance", ylab="Distance to best gastroc",
-     main="Islet samples", pch=16)
+plot(self, best_bycol, xlab="Self-self correlation", ylab="Best gastroc correlation",
+     main="Islet samples", pch=16, xlim=c(-0.3, 1.0), ylim=c(0.6, 1.0))
 label <- best_bycol-self > 0.3
 text(self[label]+0.03, best_bycol[label], names(self)[label],
      adj=c(0,0.5), cex=0.8)
@@ -213,22 +223,84 @@ text(self[label]-0.03, best_bycol[label], names(self)[label],
      adj=c(1,0.5), cex=0.8)
 ```
 
-gastroc
-(3655, 3659)
+Most samples have a large self-self correlation that matches the
+maximum in the row and column. There are four gastroc samples that
+have low self-self correlation but where there is another large value
+in that row, and there are five problem islet samples.
 
-islet
-(3598, 3599)
-(3296 != 3295)
+Let's pull out the five problem samples (plus one other, for reasons that
+will soon be clear), and plot the values in each
+column, pointing to the maximum in red and the self value in green.
 
+```{r plot_six_samples, fig.height=6.5}
+samples <- sort(c(names(self)[best_bycol-self > 0.2], "Mouse3295"))
+par(mfrow=c(3,2), las=1, mar=c(4.1, 4.1, 2.1, 0.6))
+rn <- rownames(corr_betw_samples)
+green <- "#2ecc40"
+red <- "#ff4136"
+for(sample in samples) {
+    plot(corr_betw_samples[,sample], xlab="Index", ylab="Correlation",
+         main=sample, pch=16, ylim=range(corr_betw_samples))
+    mx <- which.max(corr_betw_samples[,sample])
+    points(mx, corr_betw_samples[mx,sample], pch=16, col=red)
+    text(mx-8, corr_betw_samples[mx, sample], names(mx), adj=c(1, 0.5))
+    points(which(rn==sample), corr_betw_samples[sample,sample], pch=16, col=green)
+}
+```
 
+From these results, we can see that Mouse3598 and Mouse3599 look to be
+switched in one or the other tissue, as are Mouse3655 and Mouse3659.
+From these data on their own, we can't tell which tissue is the
+problem, but the original data include gene expression microarrays for
+four other tissues, and by comparisons to those tissues, it turns out
+that Mouse3655/Mouse3659 were mixed up in gastroc, while
+Mouse3598/Mouse3599 were mixed up in islet. See [Broman et al.
+(2015)](https://doi.org/10.1534/g3.115.019778), [Fig.
+4](https://www.g3journal.org/content/ggg/5/10/2177/F4.large.jpg).
 
+Samples Mouse3295 and Mouse3296 look correct in gastroc, and Mouse3295
+looks correct in islet, but Mouse3296 islet looks like Mouse3295
+gastroc. The sample labelled Mouse3296 in islet is a really an
+unintended biological replicate of sample Mouse3295.
 
 
 ### Second-best samples
 
+As further support to show that the best-correlated samples correspond
+to the correct labels, it can be useful to consider the second-best
+sample in each row and column. If the best-correlated sample is not
+much more correlated than the second-best, than the support is not so
+strong, for the best sample to be the true one.
+
+To pull out the second-best correlated sample, use the function
+`get_2ndbest()`, which has the same arguments as `get_best()`.
+
 ```{r second_best_by_row_and_col}
 secbest_byrow <- get_2ndbest(corr_betw_samples, get_min=FALSE, dimension="row")
 secbest_bycol <- get_2ndbest(corr_betw_samples, get_min=FALSE, dimension="column")
+```
+
+We then can plot the second-best samples versus the best samples, and
+we will point to the problem samples. The four problem samples in
+gastroc, and the five problem samples in islet, are highlighted in red.
+Values away from the diagonal have good support for the "best" sample
+being the correct one.
+
+```{r sec_best_vs_best}
+par(mfrow=c(1,2), mar=c(4.1, 4.1, 1.6, 0.6), las=1)
+plot(best_byrow, secbest_byrow, xlab="Best islet correlation",
+     ylab="Second best islet correlation",
+     main="Gastroc samples", pch=16, xlim=c(0.5, 1), ylim=c(0.5, 1))
+label <- best_byrow-self > 0.2
+points(best_byrow[label], secbest_byrow[label], pch=16, col=red)
+abline(0,1, lty=2)
+
+plot(best_bycol, secbest_bycol, xlab="Best gastroc correlation",
+     ylab="Second best gastroc correlation",
+     main="Islet samples", pch=16, xlim=c(0.5, 1), ylim=c(0.5, 1))
+label <- best_bycol-self > 0.2
+points(best_bycol[label], secbest_bycol[label], pch=16, col=red)
+abline(0,1, lty=2)
 ```
 
 
