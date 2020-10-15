@@ -3,3 +3,4 @@
 Makefile$
 ^\.travis\.yml$
 ^LICENSE\.md$
+^docs$

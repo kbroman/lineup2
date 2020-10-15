@@ -15,7 +15,20 @@ general and not so closely tied to the [R/qtl](http://rqtl.org)
 package.
 
 
-#### License
+### Vignette
+
+A vignette describing the use of the package is available
+[on the web](https://kbroman.org/lineup2/lineup2.html).
+Or view it from within R by load the package and then using the
+`vignette()` function.
+
+```r
+library(lineup2)
+vignette("lineup2", package="lineup2")
+```
+
+
+### License
 
 This package is free software; you can redistribute it and/or modify it
 under the terms of the GNU General Public License, version 3, as

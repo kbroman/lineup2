@@ -1,0 +1,205 @@
+---
+title: R/lineup2 User Guide
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{R/lineup2 User Guide}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8](inputenc)
+---
+
+```{r knitr_options, include=FALSE}
+knitr::opts_chunk$set(fig.width=7, fig.height=4.5)
+```
+
+
+[R/lineup2](https://github.com/kbroman/lineup2)
+is an [R](https://www.r-project.org) package
+providing tools for detecting and
+correcting sample mix-ups between two sets of measurements, such as
+between gene expression data on two tissues. It's a revised
+version of [lineup](https://github.com/kbroman/lineup), to be more
+general and not so closely tied to the [R/qtl](http://rqtl.org)
+package.
+
+We will illustrate some of the tools in this User Guide. We will use
+the example data included in the package `lineup2ex`. These are a
+subset of data from [Broman et al.
+(2015)](https://doi.org/10.1534/g3.115.019778) (see also [Tian et al.
+2015](https://doi.org/10.1534/genetics.115.179432)), and concern gene
+expression microarray data on about 500 mice in two tissues,
+gastrocnemius muscle (abbreviated "gastroc") and pancreatic islets
+(abbreviated "islet"). While the original data included 40,000 gene
+expression measurements, the example data consider just a subset of
+200 genes: 100 chosen to be highly correlated between the two tissues,
+and 100 others chosen at random.
+
+When we load the [lineup2](https://github.com/kbroman/lineup2)
+package, the data are immediately available, as `lineup2ex`, which is
+a list containing the two tissues, each of which is a matrix, samples
+&times; genes.
+
+```{r load_package}
+library(lineup2)
+gastroc <- lineup2ex$gastroc
+islet <- lineup2ex$islet
+```
+
+We seek to identify sample mix-ups: mislabeled rows in one or the
+other data sets. One approach to do this is to first identify a
+subset of correlated columns, and then to look at the correlations
+between rows, for that subset of columns.
+
+### Aligning rows or columns
+
+To calculate the correlations between columns, we first need to align
+the rows between the two matrices. We can do this with the function
+`align_matrix_rows()`. There is a similar function
+`align_matrix_cols()` for aligning columns.
+
+```{r align_rows}
+aligned <- align_matrix_rows(gastroc, islet)
+```
+
+The original matrices have `r nrow(gastroc)` and `r nrow(islet)` rows.
+The output of `align_matrix_rows()` is a list with two matrices, where
+the original matrices are subsetted to their common rows, based on
+their rownames. Here, each matrix in the output has `r nrow(aligned[[1]])`
+rows, which is the number of samples in common between the two
+tissues.
+
+We could use `align_matrix_cols()` to align the columns (subsetting to
+the common column names and putting them in the same order), but here they
+are already aligned, and so no change occurs.
+
+```{r align_cols}
+aligned <- align_matrix_cols(aligned[[1]], aligned[[2]])
+```
+
+### Correlations between matrices
+
+With the rows now aligned, we can now calculate the correlation in
+gene expression between the two tissues, to identify genes that will
+be useful for measuring sample similarity.
+
+The function `corr_betw_matrices()` is used to calculate the
+correlation between the columns in one matrix and the columns in
+another matrix. There are several options; here we will use `what="paired"`
+to get just the correlations between the paired columns.
+
+```{r calc_paired_corr}
+paired_corr <- corr_betw_matrices(aligned[[1]], aligned[[2]])
+```
+
+The result is a vector of `r ncol(aligned[[1]])` correlations, for the
+pairs of columns. Here is a plot of the sorted correlations.
+
+```{r to_reset_par, include=FALSE}
+old_mar <- par("mar")
+old_mfrow <- par("mfrow")
+```
+
+```{r plot_paired_corr}
+par(mar=c(4.1, 5.1, 1.1, 1.1))
+plot(sort(paired_corr), ylab="Correlations between column pairs, sorted", las=1, pch=16)
+abline(h=0, lty=2, col="gray60")
+```
+
+Because of the way the genes were selected, there are 100 genes
+with between-tissue correlation scattered around 0, and then another
+100 genes with correlations > 0.75. We will grab that top 100 for
+assessing sample similarity.
+
+```{r select_top_genes}
+selected_genes <- which(paired_corr > 0.75)
+```
+
+### Correlations/distances between samples
+
+We can now calculate the similarity between the samples using these
+selected genes. The simplest way to do so is by again using
+`corr_betw_matrices()`, but with the transposed matrices so that the
+samples become the columns.
+
+```{r sample_correlations}
+corr_betw_samples <- corr_betw_matrices(t(gastroc[,selected_genes]),
+                                        t(islet[,selected_genes]), what="all")
+```
+
+The output is a `r nrow(gastroc)` &times; `r nrow(islet)` matrix, with
+the (_i_,_j_)th element being the correlation between the _i_th row of
+`gastroc` and the _j_th row of `islet`.
+
+Note that the relate function `dist_betw_matrices()` can be used to
+calculate the Euclidean or mean absolute distance between samples.
+There is also `dist_betw_arrays()` for arrays with >2 dimensions.
+Unlike `corr_betw_matrices()`, these functions look for distance
+between rows not columns.
+
+
+### Summarize correlations/distances
+
+```{r hist_self_nonself, fig.height=6}
+hist_self_nonself(corr_betw_samples)
+```
+
+```{r self_values}
+self <- get_self(corr_betw_samples)
+```
+
+There is also a function `get_nonself()` for pulling out the non-self values.
+
+
+
+
+### Identify sample mix-ups
+
+```{r best_by_row_and_col}
+best_byrow <- get_best(corr_betw_samples, get_min=FALSE, dimension="row")
+best_bycol <- get_best(corr_betw_samples, get_min=FALSE, dimension="column")
+```
+
+```{r plot_self_v_best}
+par(mfrow=c(2,1))
+plot(self, best_byrow, xlab="Self-self distance", ylab="Distance to best islet")
+plot(self, best_bycol, xlab="Self-self distance", ylab="Distance to best gastroc")
+```
+
+gastroc
+(3655, 3659)
+
+islet
+(3598, 3599)
+(3296 != 3295)
+
+
+
+
+
+### Second-best samples
+
+```{r second_best_by_row_and_col}
+secbest_byrow <- get_2ndbest(corr_betw_samples, get_min=FALSE, dimension="row")
+secbest_bycol <- get_2ndbest(corr_betw_samples, get_min=FALSE, dimension="column")
+```
+
+
+
+
+### References
+
+Broman KW, Keller MP, Broman AT, Kendziorski C, Yandell BS, Sen Ś,
+Attie AD (2015) Identification and correction of sample mix-ups in
+expression genetic data: A case study. G3 5:2177-2186
+[doi:10.1534/g3.115.019778](https://doi.org/10.1534/g3.115.019778)
+
+Tian J, Keller MP, Oler AT, Rabaglia ME, Schueler KL, Stapleton DS,
+Broman AT, Zhao W, Kendziorski C, Yandell BS, Hagenbuch B, Broman KW,
+Attie AD (2015) Identification of the bile acid transporter Slco1a6 as
+a candidate gene that broadly affects gene expression in mouse
+pancreatic islets. Genetics 201:1253-1262
+[doi:10.1534/genetics.115.179432](https://doi.org/10.1534/genetics.115.179432)
+
+
+```{r reset_par, include=FALSE}
+par(mar=old_mar, mfrow=old_mfrow)
+```
