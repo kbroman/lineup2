@@ -96,11 +96,12 @@ pairs of columns. Here is a plot of the sorted correlations.
 ```{r to_reset_par, include=FALSE}
 old_mar <- par("mar")
 old_mfrow <- par("mfrow")
+old_las <- par("las")
 ```
 
 ```{r plot_paired_corr}
-par(mar=c(4.1, 5.1, 1.1, 1.1))
-plot(sort(paired_corr), ylab="Correlations between column pairs, sorted", las=1, pch=16)
+par(mar=c(4.1, 5.1, 1.1, 1.1), las=1)
+plot(sort(paired_corr), ylab="Correlations between column pairs, sorted", pch=16)
 abline(h=0, lty=2, col="gray60")
 ```
 
@@ -159,9 +160,21 @@ best_bycol <- get_best(corr_betw_samples, get_min=FALSE, dimension="column")
 ```
 
 ```{r plot_self_v_best}
-par(mfrow=c(2,1))
-plot(self, best_byrow, xlab="Self-self distance", ylab="Distance to best islet")
-plot(self, best_bycol, xlab="Self-self distance", ylab="Distance to best gastroc")
+par(mfrow=c(1,2), mar=c(4.1, 4.1, 1.6, 0.6), las=1)
+plot(self, best_byrow, xlab="Self-self distance", ylab="Distance to best islet",
+     main="Gastroc samples", pch=16)
+label <- best_byrow-self > 0.2
+text(self[label]+0.03, best_byrow[label], names(self)[label],
+     adj=c(0,0.5), cex=0.8)
+
+plot(self, best_bycol, xlab="Self-self distance", ylab="Distance to best gastroc",
+     main="Islet samples", pch=16)
+label <- best_bycol-self > 0.3
+text(self[label]+0.03, best_bycol[label], names(self)[label],
+     adj=c(0,0.5), cex=0.8)
+label <- best_bycol-self > 0.2 & best_bycol-self < 0.3
+text(self[label]-0.03, best_bycol[label], names(self)[label],
+     adj=c(1,0.5), cex=0.8)
 ```
 
 gastroc
@@ -201,5 +214,5 @@ pancreatic islets. Genetics 201:1253-1262
 
 
 ```{r reset_par, include=FALSE}
-par(mar=old_mar, mfrow=old_mfrow)
+par(mar=old_mar, mfrow=old_mfrow, las=old_las)
 ```
