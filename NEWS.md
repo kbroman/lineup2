@@ -1,4 +1,4 @@
-## lineup2 0.1-8 (2020-10-13)
+## lineup2 0.1-8 (2020-10-15)
 
 - Add some more examples in the help files.
 

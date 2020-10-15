@@ -38,6 +38,18 @@ between the ith row of \code{x} and the jth row of \code{y}.
 Calculate the distances between the rows of one matrix and the rows
 of a second matrix.
 }
+\examples{
+p <- 10
+n <- 5
+m <- 3
+x <- matrix(stats::rnorm(n*p), ncol=p)
+rownames(x) <- LETTERS[1:n]
+y <- matrix(stats::rnorm(m*p), ncol=p)
+rownames(y) <- letters[1:m]
+
+d <- dist_betw_matrices(x, y)
+
+}
 \seealso{
 \code{\link[=corr_betw_matrices]{corr_betw_matrices()}}, \code{\link[=dist_betw_arrays]{dist_betw_arrays()}}
 }
