@@ -21,10 +21,10 @@ Align the columns of two matrices using their column names,
 omitting columns that are not present in both.
 }
 \examples{
-y <- x <- matrix(nrow=2, ncol=3)
-colnames(x) <- c("A", "B", "C")
-colnames(y) <- c("B", "A", "D")
-align_matrix_cols(x,y)
+# using the provided lineup2ex data (a list of two matrices)
+# reduces to the common columns and puts the columns in the same order
+# (using the column names)
+aligned <- align_matrix_cols(lineup2ex$gastroc, lineup2ex$islet)
 
 }
 \seealso{

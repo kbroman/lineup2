@@ -11,10 +11,10 @@
 #' omitted.
 #'
 #' @examples
-#' y <- x <- matrix(nrow=3, ncol=2)
-#' rownames(x) <- c("A", "B", "C")
-#' rownames(y) <- c("B", "A", "D")
-#' align_matrix_rows(x,y)
+#' # using the provided lineup2ex data (a list of two matrices)
+#' # reduces to the common rows and puts the rows in the same order
+#' # (using the row names)
+#' aligned <- align_matrix_rows(lineup2ex$gastroc, lineup2ex$islet)
 #'
 #' @seealso [align_matrix_cols()]
 #' @export
@@ -49,10 +49,10 @@ align_matrix_rows <-
 #' are omitted.
 #'
 #' @examples
-#' y <- x <- matrix(nrow=2, ncol=3)
-#' colnames(x) <- c("A", "B", "C")
-#' colnames(y) <- c("B", "A", "D")
-#' align_matrix_cols(x,y)
+#' # using the provided lineup2ex data (a list of two matrices)
+#' # reduces to the common columns and puts the columns in the same order
+#' # (using the column names)
+#' aligned <- align_matrix_cols(lineup2ex$gastroc, lineup2ex$islet)
 #'
 #' @seealso [align_matrix_rows()]
 #' @export
