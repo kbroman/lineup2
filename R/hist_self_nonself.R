@@ -15,6 +15,17 @@
 #'
 #' @seealso [get_self()], [get_nonself()]
 #'
+#' @examples
+#' # align rows in the provided dataset, lineup2ex
+#' aligned <- align_matrix_rows(lineup2ex$gastroc, lineup2ex$islet)
+#' # find correlated columns
+#' selected_genes <- (corr_betw_matrices(aligned[[1]], aligned[[2]], "paired") > 0.75)
+#' # calculate correlation between rows
+#' similarity <- corr_betw_matrices(t(lineup2ex$gastroc[,selected_genes]),
+#'                                  t(lineup2ex$islet[,selected_genes]), "all")
+#' # histograms of the self and non-self distances
+#' hist_self_nonself(similarity)
+#'
 #' @importFrom graphics hist rug par
 #' @export
 hist_self_nonself <-

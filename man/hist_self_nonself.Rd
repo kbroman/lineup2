@@ -26,6 +26,18 @@ Plot histograms of self-self and self-nonself distances
 We use the \code{mfrow} arg for \code{\link[graphics:par]{graphics::par()}} to make a
 two-panel figure.
 }
+\examples{
+# align rows in the provided dataset, lineup2ex
+aligned <- align_matrix_rows(lineup2ex$gastroc, lineup2ex$islet)
+# find correlated columns
+selected_genes <- (corr_betw_matrices(aligned[[1]], aligned[[2]], "paired") > 0.75)
+# calculate correlation between rows
+similarity <- corr_betw_matrices(t(lineup2ex$gastroc[,selected_genes]),
+                                 t(lineup2ex$islet[,selected_genes]), "all")
+# histograms of the self and non-self distances
+hist_self_nonself(similarity)
+
+}
 \seealso{
 \code{\link[=get_self]{get_self()}}, \code{\link[=get_nonself]{get_nonself()}}
 }
