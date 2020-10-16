@@ -1,4 +1,8 @@
-## lineup2 0.2-3 (2020-10-16)
+## lineup2 0.2-4 (2020-10-16)
+
+- Added argument `threshold` to `get_problems()`
+
+- Get rid of rownames from output of `get_problems()`
 
 - Added argument `xlabel` for `hist_self_nonself()` to control x-axis labels.
 

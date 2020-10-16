@@ -8,17 +8,21 @@ get_problems(
   d,
   dimension = c("row", "column"),
   get_min = TRUE,
-  subset = c("problems", "all")
+  subset = c("problems", "all"),
+  threshold = 0
 )
 }
 \arguments{
-\item{d}{A distance matrix}
+\item{d}{A distance or similarity matrix}
 
 \item{dimension}{Whether to determine the best distances within rows or columns}
 
-\item{get_min}{If TRUE, get the minimum; if FALSE, get the maximum}
+\item{get_min}{If TRUE, get the minimum (for a distance matrix);
+if FALSE, get the maximum (for a similarity matrix)}
 
 \item{subset}{Whether to return just the rows with potential problems, or all of the rows.}
+
+\item{threshold}{If \code{subset="problems"}, the threshold on the difference between the self and best distances.}
 }
 \value{
 A data frame containing individual ID, distance to self,
