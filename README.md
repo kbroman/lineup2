@@ -15,6 +15,26 @@ general and not so closely tied to the [R/qtl](http://rqtl.org)
 package.
 
 
+### Installation
+
+You can install R/lineup2 from its
+[GitHub repository](https://github.com/kbroman/lineup2). You first need to
+install the [devtools](https://github.com/r-lib/devtools) package.
+
+```r
+install.packages("devtools")
+```
+
+Then install R/lineup2 using the `install_github` function in the
+[devtools](https://github.com/r-lib/devtools) package. (With
+`build_vignettes=TRUE`, the vignette will be built and installed.)
+
+```r
+library(devtools)
+install_github("kbroman/lineup2", build_vignettes=TRUE)
+```
+
+
 ### Vignette
 
 A vignette describing the use of the package is available
