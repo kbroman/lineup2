@@ -62,7 +62,7 @@ aligned <- align_matrix_rows(gastroc, islet)
 
 The original matrices have `r nrow(gastroc)` and `r nrow(islet)` rows.
 The output of `align_matrix_rows()` is a list with two matrices, where
-the original matrices are subsetted to their common rows, based on
+the original matrices are reduced to their common rows, based on
 their row names. The rows are also placed in the same order.
 Here, each matrix in the output has `r nrow(aligned[[1]])`
 rows, which is the number of samples in common between the two
@@ -260,7 +260,7 @@ Mouse3598/Mouse3599 were mixed up in islet. See [Broman et al.
 
 Samples Mouse3295 and Mouse3296 look correct in gastroc, and Mouse3295
 looks correct in islet, but Mouse3296 islet looks like Mouse3295
-gastroc. The sample labelled Mouse3296 in islet is a really an
+gastroc. The sample labelled Mouse3296 in islet is really an
 unintended biological replicate of sample Mouse3295.
 
 
