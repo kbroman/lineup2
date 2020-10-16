@@ -17,6 +17,18 @@ replaced with NAs.
 Return the distance matrix with all self-self distances replaced
 with NAs (and so just containing the self-self distances).
 }
+\examples{
+# align rows in the provided dataset, lineup2ex
+aligned <- align_matrix_rows(lineup2ex$gastroc, lineup2ex$islet)
+# find correlated columns
+selected_genes <- (corr_betw_matrices(aligned[[1]], aligned[[2]], "paired") > 0.75)
+# calculate correlation between rows
+similarity <- corr_betw_matrices(t(lineup2ex$gastroc[,selected_genes]),
+                                 t(lineup2ex$islet[,selected_genes]), "all")
+# pull out the non-self similarities
+nonself <- get_nonself(similarity)
+
+}
 \seealso{
 \code{\link[=get_self]{get_self()}}, \code{\link[=get_best]{get_best()}}, \code{\link[=get_2ndbest]{get_2ndbest()}}
 }

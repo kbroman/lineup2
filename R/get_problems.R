@@ -15,6 +15,21 @@
 #'     best distance and corresponding individual, 2nd best distance
 #'     and the corresponding individual.
 #'
+#' @examples
+#' # align rows in the provided dataset, lineup2ex
+#' aligned <- align_matrix_rows(lineup2ex$gastroc, lineup2ex$islet)
+#' # find correlated columns
+#' selected_genes <- (corr_betw_matrices(aligned[[1]], aligned[[2]], "paired") > 0.75)
+#' # calculate correlation between rows
+#' similarity <- corr_betw_matrices(t(lineup2ex$gastroc[,selected_genes]),
+#'                                  t(lineup2ex$islet[,selected_genes]), "all")
+#' # pull out the problems, looking by row (where best > self + 0.3)
+#' problems_byrow <- get_problems(similarity, get_min=FALSE, threshold=0.3)
+#'
+#' # pull out the problems, looking by column (where best > self + 0.3)
+#' problems_bycol <- get_problems(similarity, get_min=FALSE, threshold=0.3,
+#'                                dimension="column")
+#'
 #' @seealso [get_self()], [get_best()], [get_2ndbest()], [which_best()], [get_nonself()]
 #'
 #' @export
