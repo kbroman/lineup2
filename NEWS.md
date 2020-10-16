@@ -1,4 +1,4 @@
-## lineup2 0.2-2 (2020-10-15)
+## lineup2 0.2-3 (2020-10-16)
 
 - Added argument `xlabel` for `hist_self_nonself()` to control x-axis labels.
 

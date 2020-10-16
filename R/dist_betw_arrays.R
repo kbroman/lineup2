@@ -24,6 +24,18 @@
 #' distance between the ith column of `x` and the jth column of
 #' `y`.
 #'
+#' @examples
+#' p <- 10
+#' k <- 6
+#' n <- 5
+#' m <- 3
+#' x <- array(stats::rnorm(n*k*p), dim=c(n,k,p))
+#' rownames(x) <- LETTERS[1:n]
+#' y <- array(stats::rnorm(m*k*p), dim=c(m,k,p))
+#' rownames(y) <- letters[1:m]
+#'
+#' d <- dist_betw_arrays(x, y)
+#'
 #' @seealso [dist_betw_matrices()], [corr_betw_matrices()]
 #' @export
 dist_betw_arrays <-
