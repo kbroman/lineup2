@@ -62,25 +62,26 @@ using all complete pairs, as in \code{\link[stats:cor]{stats::cor()}} with
 \code{use="pairwise.complete.obs"}.
 }
 \examples{
-set.seed(20201013)
-x <- matrix(rnorm(500), ncol=5)
-colnames(x) <- paste0("X", 1:5)
-y <- matrix(rnorm(500), ncol=5)
-colnames(y) <- paste0("Y", 1:5)
+# use the provided data, and first align the rows
+aligned <- align_matrix_rows(lineup2ex$gastroc, lineup2ex$islet)
 
 # correlations for each column in x with each in y
-result_all <- corr_betw_matrices(x, y, "all")
+result_pairs <- corr_betw_matrices(aligned[[1]], aligned[[2]], "paired")
 
-# correlations for corresponding column pairs
-# (diagonal of result_all)
-result_pair <- corr_betw_matrices(x, y, "paired")
+# subset columns to those with correlation > 0.75
+gastroc <- lineup2ex$gastroc[,result_pairs > 0.75]
+islet <- lineup2ex$islet[,result_pairs > 0.75]
+
+# similarity matrix for the two sets of rows
+# (by transposing and using what="all")
+corr_betw_samples <- corr_betw_matrices(t(gastroc), t(islet), "all")
 
 # for each column in x, find most correlated column in y
 # (max in each row of result_all)
-result_bestright <- corr_betw_matrices(x, y, "bestright")
+bestright <- corr_betw_matrices(t(gastroc), t(islet), "bestright")
 
-# correlations in result_all that exceed a threshold
-result_bestpairs <- corr_betw_matrices(x, y, "bestpairs", corr_threshold=0.15)
+# correlations that exceed a threshold
+bestpairs <- corr_betw_matrices(t(gastroc), t(islet), "bestpairs", corr_threshold=0.8)
 
 }
 \seealso{
