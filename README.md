@@ -39,7 +39,7 @@ install_github("kbroman/lineup2", build_vignettes=TRUE)
 
 A vignette describing the use of the package is available
 [on the web](https://kbroman.org/lineup2/lineup2.html).
-Or view it from within R by load the package and then using the
+Or view it from within R by loading the package and then using the
 `vignette()` function.
 
 ```r
