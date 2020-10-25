@@ -1,6 +1,7 @@
 ## [R/lineup2](https://github.com/kbroman/lineup2)
 
 [![Build Status](https://travis-ci.org/kbroman/lineup2.svg?branch=master)](https://travis-ci.org/kbroman/lineup2)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/lineup2)](https://cran.r-project.org/package=lineup2)
 
 [Karl W Broman](https://kbroman.org)
 
@@ -17,21 +18,10 @@ package.
 
 ### Installation
 
-You can install R/lineup2 from its
-[GitHub repository](https://github.com/kbroman/lineup2). You first need to
-install the [devtools](https://github.com/r-lib/devtools) package.
+You can install R/lineup2 from [CRAN](https://cran.r-project.org):
 
 ```r
-install.packages("devtools")
-```
-
-Then install R/lineup2 using the `install_github` function in the
-[devtools](https://github.com/r-lib/devtools) package. (With
-`build_vignettes=TRUE`, the vignette will be built and installed.)
-
-```r
-library(devtools)
-install_github("kbroman/lineup2", build_vignettes=TRUE)
+install.packages("lineup2")
 ```
 
 
