@@ -8,8 +8,8 @@
 \description{
 Tools for detecting and correcting sample mix-ups between two sets
     of measurements, such as between gene expression data on two
-    tissues. This is a revised version of the lineup package, to be
-    more general.
+    tissues. This is a revised version of the 'lineup' package, to be
+    more general and not tied to the 'qtl' package.
 }
 \seealso{
 Useful links:
