@@ -1,11 +1,11 @@
 Package: lineup2
-Version: 0.2-4
-Date: 2020-10-16
+Version: 0.2-5
+Date: 2020-10-31
 Title: Lining Up Two Sets of Measurements
 Description: Tools for detecting and correcting sample mix-ups between two sets
     of measurements, such as between gene expression data on two
-    tissues. This is a revised version of the lineup package, to be
-    more general.
+    tissues. This is a revised version of the 'lineup' package, to be
+    more general and not tied to the 'qtl' package.
 Authors@R: c(person("Karl W", "Broman", role=c("aut", "cre"),
              email="broman@wisc.edu", comment=c(ORCID = "0000-0002-4914-6671")))
 Author: Karl W Broman [aut, cre] (<https://orcid.org/0000-0002-4914-6671>)

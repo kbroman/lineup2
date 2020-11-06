@@ -1,4 +1,4 @@
-## lineup2 0.2-4 (2020-10-16)
+## lineup2 0.2-5 (2020-10-31)
 
 - Added argument `threshold` to `get_problems()`
 
