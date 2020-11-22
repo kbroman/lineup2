@@ -1,6 +1,6 @@
 ## [R/lineup2](https://github.com/kbroman/lineup2)
 
-[![Build Status](https://travis-ci.org/kbroman/lineup2.svg?branch=master)](https://travis-ci.org/kbroman/lineup2)
+[![R build status](https://github.com/kbroman/lineup2/workflows/R-CMD-check/badge.svg)](https://github.com/kbroman/lineup2/actions)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/lineup2)](https://cran.r-project.org/package=lineup2)
 
 [Karl W Broman](https://kbroman.org)
