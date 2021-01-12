@@ -1,3 +1,8 @@
+## lineup2 0.3-1 (2021-01-12)
+
+- Fix typo in help file for `dist_betw_arrays()`
+
+
 ## lineup2 0.2-5 (2020-10-31)
 
 - Added argument `threshold` to `get_problems()`

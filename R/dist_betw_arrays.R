@@ -21,7 +21,7 @@
 #'
 #' @return If `x` and `y` have `m` and `n` rows, respectively, the
 #' result is an `m` by `n` matrix whose (i,j)th element is the
-#' distance between the ith column of `x` and the jth column of
+#' distance between the ith row of `x` and the jth row of
 #' `y`.
 #'
 #' @examples

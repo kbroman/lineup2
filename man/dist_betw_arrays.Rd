@@ -23,7 +23,7 @@ produced by \code{\link[parallel:makeCluster]{parallel::makeCluster()}}.}
 \value{
 If \code{x} and \code{y} have \code{m} and \code{n} rows, respectively, the
 result is an \code{m} by \code{n} matrix whose (i,j)th element is the
-distance between the ith column of \code{x} and the jth column of
+distance between the ith row of \code{x} and the jth row of
 \code{y}.
 }
 \description{
