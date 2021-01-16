@@ -1,6 +1,8 @@
-## lineup2 0.3-1 (2021-01-12)
+## lineup2 0.3-2 (2021-01-16)
 
-- Fix typo in help file for `dist_betw_arrays()`
+- Fixed typo in help file for `dist_betw_arrays()`.
+
+- Removed use of svg in vignette.
 
 
 ## lineup2 0.2-5 (2020-10-31)
