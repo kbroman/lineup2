@@ -13,4 +13,8 @@ Rcpp::NumericMatrix rmsd_betw_matrices(const Rcpp::NumericMatrix& x,
 Rcpp::NumericMatrix mad_betw_matrices(const Rcpp::NumericMatrix& x,
                                       const Rcpp::NumericMatrix& y);
 
+// like rmsd_betw_matrices but using the proportion of differences
+Rcpp::NumericMatrix propdiff_betw_matrices(const Rcpp::NumericMatrix& x,
+                                           const Rcpp::NumericMatrix& y);
+
 #endif // DIST_BETW_MATRICES_H

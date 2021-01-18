@@ -4,7 +4,7 @@
 \alias{dist_betw_arrays}
 \title{Distance between rows of two arrays}
 \usage{
-dist_betw_arrays(x, y, distance = c("rmsd", "mad"), cores = 1)
+dist_betw_arrays(x, y, distance = c("rmsd", "mad", "propdiff"), cores = 1)
 }
 \arguments{
 \item{x}{A numeric array.}
@@ -12,8 +12,8 @@ dist_betw_arrays(x, y, distance = c("rmsd", "mad"), cores = 1)
 \item{y}{A second numeric array, with the same dimensions as \code{x}.}
 
 \item{distance}{Indicates whether to use Euclidean distance
-(\code{"rmsd"} for root mean square difference) or the mean absolute
-difference (\code{"mad"}).}
+(\code{"rmsd"} for root mean square difference), the mean absolute
+difference (\code{"mad"}), or the proportion of differences (\code{"propdiff"}).}
 
 \item{cores}{Number of CPU cores to use, for parallel calculations.
 (If \code{0}, use \code{\link[parallel:detectCores]{parallel::detectCores()}}.)

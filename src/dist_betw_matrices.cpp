@@ -71,3 +71,39 @@ NumericMatrix mad_betw_matrices(const NumericMatrix& x,
 
     return result;
 }
+
+
+// like rmsd_betw_matrices but using the proportion of differences
+//
+// [[Rcpp::export()]]
+NumericMatrix propdiff_betw_matrices(const NumericMatrix& x,
+                                     const NumericMatrix& y)
+{
+    const double tol=1e-6;
+    int n = x.cols();
+    int m = y.cols();
+    int p = x.rows();
+    if(y.rows() != p)
+        throw std::invalid_argument("nrow(x) != nrow(y)");
+
+    NumericMatrix result(n,m);
+
+    for(int i=0; i<n; i++) {
+        for(int j=0; j<m; j++) {
+            checkUserInterrupt();  // check for ^C from user
+
+            int value = 0;
+            int count=0;
+            for(int k=0; k<p; k++) {
+                if(R_finite(x(k,i)) && R_finite(y(k,j))) {
+                    if(fabs(x(k,i) - y(k,j)) < tol) value++;
+                    count++;
+                }
+            }
+            if(count > 0) result(i,j) = (double)value / (double)count;
+            else result(i,j) = NA_REAL;
+        }
+    }
+
+    return result;
+}

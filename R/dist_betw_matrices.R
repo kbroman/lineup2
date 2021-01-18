@@ -6,8 +6,8 @@
 #' @param x A numeric matrix.
 #' @param y A second numeric matrix, with the same number of columns as `x`.
 #' @param distance Indicates whether to use Euclidean distance
-#'     (`"rmsd"` for root mean square difference) or the mean absolute
-#'     difference (`"mad"`).
+#'     (`"rmsd"` for root mean square difference), the mean absolute
+#'     difference (`"mad"`), or the proportion of differences (`"propdiff"`).
 #' @param align_cols If TRUE, align the columns in the two matrices by
 #' the column names.
 #' @param cores Number of CPU cores to use, for parallel calculations.
@@ -33,7 +33,7 @@
 #' @seealso [corr_betw_matrices()], [dist_betw_arrays()]
 #' @export
 dist_betw_matrices <-
-    function(x,y, distance=c("rmsd", "mad"), align_cols=TRUE, cores=1)
+    function(x,y, distance=c("rmsd", "mad", "propdiff"), align_cols=TRUE, cores=1)
 {
     distance <- match.arg(distance)
 
@@ -62,8 +62,10 @@ dist_betw_matrices <-
 
     if(distance=="rmsd") {
         func <- rmsd_betw_matrices
-    } else {
+    } else if(distance=="mad") {
         func <- mad_betw_matrices
+    } else {
+        func <- propdiff_betw_matrices
     }
 
     if(n_cores(cores)==1) {

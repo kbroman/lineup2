@@ -25,6 +25,10 @@ mad_betw_matrices <- function(x, y) {
     .Call(`_lineup2_mad_betw_matrices`, x, y)
 }
 
+propdiff_betw_matrices <- function(x, y) {
+    .Call(`_lineup2_propdiff_betw_matrices`, x, y)
+}
+
 fscale <- function(x, y) {
     .Call(`_lineup2_fscale`, x, y)
 }

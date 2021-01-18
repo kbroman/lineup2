@@ -3,6 +3,9 @@
 - Added function `plot_sample()` for plotting a selected row or column
   from a distance/similarity matrix.
 
+- Added option `distance="propdiff"` to `dist_betw_matrices()` and
+  `dist_betw_arrays()`.
+
 - Fixed typo in help file for `dist_betw_arrays()`.
 
 - Removed use of svg in vignette.

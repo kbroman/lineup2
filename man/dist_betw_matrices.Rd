@@ -7,7 +7,7 @@
 dist_betw_matrices(
   x,
   y,
-  distance = c("rmsd", "mad"),
+  distance = c("rmsd", "mad", "propdiff"),
   align_cols = TRUE,
   cores = 1
 )
@@ -18,8 +18,8 @@ dist_betw_matrices(
 \item{y}{A second numeric matrix, with the same number of columns as \code{x}.}
 
 \item{distance}{Indicates whether to use Euclidean distance
-(\code{"rmsd"} for root mean square difference) or the mean absolute
-difference (\code{"mad"}).}
+(\code{"rmsd"} for root mean square difference), the mean absolute
+difference (\code{"mad"}), or the proportion of differences (\code{"propdiff"}).}
 
 \item{align_cols}{If TRUE, align the columns in the two matrices by
 the column names.}

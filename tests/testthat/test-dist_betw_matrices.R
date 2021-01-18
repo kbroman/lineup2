@@ -34,6 +34,13 @@ test_that("dist_betw_matrices() works", {
     expect_equal(dist_betw_matrices(zx, zy, "mad"),
                  as.matrix(stats::dist(rbind(zx,zy), method="manhattan"))[1:n, n + 1:m]/p)
 
+
+    # proportion of differences
+    x <- rbind(a=c(1,1,1,1))
+    y <- rbind(b=c(1,1,0,0), c=c(1,0,1,1), d=c(0,0,0,1))
+    expect_equal(dist_betw_matrices(x,y, "propdiff"),
+                 rbind(a=c(b=0.5, c=0.75, d=0.25)))
+
 })
 
 
