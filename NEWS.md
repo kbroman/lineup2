@@ -1,4 +1,4 @@
-## lineup2 0.3-3 (2021-01-18)
+## lineup2 0.4 (2021-01-18)
 
 - Added function `plot_sample()` for plotting a selected row or column
   from a distance/similarity matrix.
