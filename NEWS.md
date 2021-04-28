@@ -1,3 +1,8 @@
+## lineup2 0.5-1 (2021-04-28)
+
+- Update vignette to show use of `plot_sample()` (Issue #8).
+
+
 ## lineup2 0.4 (2021-01-18)
 
 - Added function `plot_sample()` for plotting a selected row or column
