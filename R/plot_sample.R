@@ -45,6 +45,7 @@ plot_sample <-
                  pch=21, bg="lightblue", las=1, main=paste("Sample", sample),
                  xlab=ifelse(dimension=="row", "Column", "Row"),
                  ylab=ifelse(get_min, "Distance", "Similarity"),
+                 ylim=NULL, xlim=NULL,
                  bg_self="green3", bg_opt="violetred", ...)
         {
             # values to plot
@@ -68,8 +69,11 @@ plot_sample <-
             x_opt <- which(!is.na(y) & y==the_opt)
             y_opt <- y[x_opt]
 
+            if(is.null(xlim)) xlim <- range(x, na.rm=TRUE)
+            if(is.null(ylim)) ylim <- range(y, na.rm=TRUE)
+
             plot(x, y, xlab=xlab, ylab=ylab, type="n", main=main,
-                 xlim=range(x), ylim=range(y, na.rm=TRUE), las=las)
+                 xlim=xlim, ylim=ylim, las=las)
             points(x, y, pch=pch, bg=bg, ...)
             points(x_opt, y_opt, pch=pch, bg=bg_opt, ...)
             points(x_self, y_self, pch=pch, bg=bg_self, ...)
