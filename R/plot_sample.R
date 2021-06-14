@@ -88,7 +88,6 @@ plot_sample <-
             labx <- labx[wh]
             laby <- laby[wh]
             lab <- lab[wh]
-            print(lab)
 
             u <- par("usr")[1:2]
             on_left <- (labx < mean(u))
