@@ -1,8 +1,8 @@
-## lineup2 0.5-2 (2021-06-14)
+## lineup2 0.6 (2021-06-14)
 
-- Update vignette to show use of `plot_sample()` (Issue #8).
+- Revised `plot_sample()` to allow specification of `xlim` and `ylim`.
 
-- Revise `plot_sample()` to allow specification of `xlim` and `ylim`.
+- Updated vignette to show use of `plot_sample()` (Issue #8).
 
 
 ## lineup2 0.4 (2021-01-18)
