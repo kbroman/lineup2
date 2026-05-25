@@ -2,5 +2,5 @@
 \.gitignore$
 Makefile$
 ^LICENSE\.md$
-^docs$
+^docs/
 ^\.github$
