@@ -6,10 +6,7 @@
 \alias{lineup2-package}
 \title{lineup2: Lining Up Two Sets of Measurements}
 \description{
-Tools for detecting and correcting sample mix-ups between two sets
-    of measurements, such as between gene expression data on two
-    tissues. This is a revised version of the 'lineup' package, to be
-    more general and not tied to the 'qtl' package.
+Tools for detecting and correcting sample mix-ups between two sets of measurements, such as between gene expression data on two tissues. This is a revised version of the 'lineup' package, to be more general and not tied to the 'qtl' package.
 }
 \seealso{
 Useful links:
@@ -21,6 +18,11 @@ Useful links:
 }
 \author{
 \strong{Maintainer}: Karl W Broman \email{broman@wisc.edu} (\href{https://orcid.org/0000-0002-4914-6671}{ORCID})
+
+Authors:
+\itemize{
+  \item Karl W Broman \email{broman@wisc.edu} (\href{https://orcid.org/0000-0002-4914-6671}{ORCID})
+}
 
 }
 \keyword{internal}
