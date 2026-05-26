@@ -2,6 +2,7 @@
 
 [![R-CMD-check](https://github.com/kbroman/lineup2/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/kbroman/lineup2/actions/workflows/R-CMD-check.yaml)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/lineup2)](https://cran.r-project.org/package=lineup2)
+[![r-universe badge](https://kbroman.r-universe.dev/lineup2/badges/version)](https://kbroman.r-universe.dev/lineup2)
 [![zenodo DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4118180.svg)](https://doi.org/10.5281/zenodo.4118180)
 
 [Karl W Broman](https://kbroman.org)
@@ -19,10 +20,24 @@ package.
 
 ### Installation
 
-You can install R/lineup2 from [CRAN](https://cran.r-project.org):
+Install the R/lineup2 package from [CRAN](https://cran.r-project.org):
+
+    install.packages("lineup2")
+
+
+Alternatively, install it from [R
+universe](https://kbroman.r-universe.dev):
 
 ```r
-install.packages("lineup2")
+install.packages("lineup2", repos=c("https://kbroman.r-universe.dev",
+                                    "https://cloud.r-project.org"))
+```
+
+Or use [remotes](https://remotes.r-lib.org) to install it from its GitHub source:
+
+```r
+install.packages("remotes")
+remotes::install_github("kbroman/lineup2")
 ```
 
 
