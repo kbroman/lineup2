@@ -13,6 +13,8 @@ old_digits <- options("digits")$digits
 options(digits=3)
 ```
 
+<link rel=stylesheet type="text/css" href="https://kbroman.org/stylesheets/kbroman_vignette.css"></script>
+
 [![R-CMD-check](https://github.com/kbroman/lineup2/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/kbroman/lineup2/actions/workflows/R-CMD-check.yaml)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/lineup2)](https://cran.r-project.org/package=lineup2)
 [![r-universe badge](https://kbroman.r-universe.dev/lineup2/badges/version)](https://kbroman.r-universe.dev/lineup2)
