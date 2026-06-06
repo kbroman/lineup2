@@ -10,6 +10,13 @@
 
 Tools for detecting and correcting sample mix-ups between two sets of measurements, such as between gene expression data on two tissues. This is a revised version of the 'lineup' package, to be more general and not tied to the 'qtl' package.
 }
+\section{Vignette}{
+
+\itemize{
+\item \href{https://kbroman.org/lineup2/lineup2.html}{R/lineup2 User Guide}
+}
+}
+
 \seealso{
 Useful links:
 \itemize{
