@@ -296,7 +296,7 @@ four other tissues, and by comparisons to those tissues, it turns out
 that Mouse3655/Mouse3659 were mixed up in gastroc, while
 Mouse3598/Mouse3599 were mixed up in islet. See [Broman et al.
 (2015)](https://doi.org/10.1534/g3.115.019778), [Fig.
-4](https://www.g3journal.org/content/ggg/5/10/2177/F4.large.jpg).
+4](https://kbroman.org/lineup2/broman2015_fig4.pdf).
 
 Samples Mouse3295 and Mouse3296 look correct in gastroc, and Mouse3295
 looks correct in islet, but Mouse3296 islet looks like Mouse3295
