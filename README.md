@@ -22,8 +22,9 @@ package.
 
 Install the R/lineup2 package from [CRAN](https://cran.r-project.org):
 
-    install.packages("lineup2")
-
+```r
+install.packages("lineup2")
+```
 
 Alternatively, install it from [R
 universe](https://kbroman.r-universe.dev):
