@@ -1,3 +1,8 @@
+## lineup2 0.7-1 (2026-06-06)
+
+- Added a package logo.
+
+
 ## lineup2 0.6 (2021-06-14)
 
 - Revised `plot_sample()` to allow specification of `xlim` and `ylim`.

@@ -1,4 +1,4 @@
-## [R/lineup2](https://github.com/kbroman/lineup2)
+## [R/lineup2](https://github.com/kbroman/lineup2) <a href="https://github.com/kbroman/lineup2"><img src="https://kbroman.org/lineup2/lineup2_logo.png" align="right" height="138" alt="R/lineup2 logo"/></a>
 
 [![R-CMD-check](https://github.com/kbroman/lineup2/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/kbroman/lineup2/actions/workflows/R-CMD-check.yaml)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/lineup2)](https://cran.r-project.org/package=lineup2)
