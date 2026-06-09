@@ -368,3 +368,8 @@ pancreatic islets. Genetics 201:1253-1262
 par(mar=old_mar, mfrow=old_mfrow, las=old_las)
 options(digits=old_digits)
 ```
+
+---
+
+[![CC BY](https://i.creativecommons.org/l/by/3.0/88x31.png)](https://creativecommons.org/licenses/by/3.0/)
+&nbsp; &nbsp; [Karl Broman](https://kbroman.org/)
