@@ -1,4 +1,4 @@
-## lineup2 0.7-1 (2026-06-06)
+## lineup2 0.7-2 (2026-06-24)
 
 - Added a package logo.
 
