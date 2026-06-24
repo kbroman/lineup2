@@ -23,3 +23,4 @@ docs/lineup2.html: vignettes/lineup2.Rmd data/lineup2ex.RData
 	[ -d docs ] || mkdir docs
 	R $(R_OPTS) -e "rmarkdown::render('$<')"
 	mv vignettes/lineup2.html $@
+	cd $(@D);paste_badges.R $(@F)
