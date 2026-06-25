@@ -13,6 +13,7 @@ version of [lineup](https://github.com/kbroman/lineup), to be more
 general and not so closely tied to the [R/qtl](https://rqtl.org)
 package.
 
+---
 
 ### Installation
 
@@ -37,6 +38,7 @@ install.packages("remotes")
 remotes::install_github("kbroman/lineup2")
 ```
 
+---
 
 ### Vignette
 
@@ -50,6 +52,7 @@ library(lineup2)
 vignette("lineup2", package="lineup2")
 ```
 
+---
 
 ### License
 
