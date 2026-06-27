@@ -1,6 +1,6 @@
 Package: lineup2
-Version: 0.7-2
-Date: 2026-06-24
+Version: 0.7-3
+Date: 2026-06-27
 Title: Lining Up Two Sets of Measurements
 Description: Tools for detecting and correcting sample mix-ups between two sets
     of measurements, such as between gene expression data on two

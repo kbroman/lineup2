@@ -1,6 +1,9 @@
-## lineup2 0.7-2 (2026-06-24)
+## lineup2 0.7-3 (2026-06-27)
 
 - Added a package logo.
+
+- `cores=0` now results in use of all but one core,
+  `parallel::detectCores()-1`.
 
 
 ## lineup2 0.6 (2021-06-14)
